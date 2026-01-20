@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شحن الالعاب | أرخص شحن ألعاب في مصر</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --primary-dark: #5b21b6;
+            --secondary: #10b981;
+            --secondary-dark: #059669;
+            --accent: #f59e0b;
+            --accent-dark: #d97706;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(109, 40, 217, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+        }
+        
+        /* شاشة الدخول */
+        #login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--darker);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        
+        .login-container {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.6s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* تصميمات عامة */
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+        }
+        
+        .input-field {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 14px 20px;
+            color: white;
+            width: 100%;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.2);
+        }
+        
+        /* بطاقات الألعاب */
+        .game-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(109, 40, 217, 0.3);
+            border-color: var(--primary);
+        }
+        
+        /* نافذة الطلب */
+        #order-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .order-container {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalSlide 0.4s ease;
+        }
+        
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        /* نافذة التسجيل */
+        #register-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        /* عناصر عائمة */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* تأثيرات التمرير */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-fade.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* شريط التقدم */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+        
+        /* تحسينات للجوال */
+        @media (max-width: 768px) {
+            .login-container,
+            .order-container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem !important;
+            }
+            
+            .equal-col {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        /* تأثيرات النص */
+        .text-glow {
+            text-shadow: 0 0 20px rgba(109, 40, 217, 0.5);
+        }
+        
+        /* تقسيمات متساوية */
+        .equal-col {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .equal-col {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* تحسينات للعناوين */
+        .section-title {
+            position: relative;
+            padding-bottom: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        /* بطاقات التقييمات */
+        .review-card {
+            transition: all 0.3s ease;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* خطوات الطلب */
+        .step-card {
+            position: relative;
+            padding: 2rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+        
+        .step-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* إشعارات */
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10001;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+        
+        /* إعلان المصمم */
+        .designer-ad {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التقدم -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- شاشة الدخول -->
+    <div id="login-screen">
+        <div class="login-container">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-bolt text-white text-2xl"></i>
+                </div>
+                <h1 class="text-3xl font-bold gradient-text mb-2">شحن الالعاب</h1>
+                <p class="text-gray-400">أرخص وأسرع شحن ألعاب في مصر</p>
+            </div>
+            
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-gray-300 mb-2">البريد الإلكتروني</label>
+                    <input type="email" id="login-email" placeholder="example@gmail.com" class="input-field">
+                </div>
+                
+                <div>
+                    <label class="block text-gray-300 mb-2">كلمة المرور</label>
+                    <input type="password" id="login-password" placeholder="********" class="input-field">
+                </div>
+                
+                <button onclick="login()" class="btn-primary w-full py-3 text-lg">
+                    <i class="fas fa-sign-in-alt ml-2"></i>
+                    تسجيل الدخول
+                </button>
+                
+                <div class="text-center">
+                    <button onclick="skipLogin()" class="text-gray-400 hover:text-white transition">
+                        <i class="fas fa-forward ml-2"></i>
+                        تخطي وتصفح الموقع
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-gray-800">
+                <p class="text-center text-gray-500 text-sm">
+                    ليس لديك حساب؟ 
+                    <button onclick="showRegister()" class="text-primary hover:underline">سجل الآن مجاناً</button>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- نافذة التسجيل -->
+    <div id="register-modal">
+        <div class="login-container">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold gradient-text">إنشاء حساب جديد</h2>
+                <button onclick="closeRegister()" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:rotate-90 transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-gray-300 mb-2">الاسم الكامل</label>
+                    <input type="text" id="register-name" placeholder="أحمد محمد" class="input-field">
+                </div>
+                
+                <div>
+                    <label class="block text-gray-300 mb-2">البريد الإلكتروني</label>
+                    <input type="email" id="register-email" placeholder="example@gmail.com" class="input-field">
+                </div>
+                
+                <div>
+                    <label class="block text-gray-300 mb-2">كلمة المرور</label>
+                    <input type="password" id="register-password" placeholder="********" class="input-field">
+                </div>
+                
+                <div>
+                    <label class="block text-gray-300 mb-2">تأكيد كلمة المرور</label>
+                    <input type="password" id="register-confirm-password" placeholder="********" class="input-field">
+                </div>
+                
+                <button onclick="register()" class="btn-primary w-full py-3">
+                    <i class="fas fa-user-plus ml-2"></i>
+                    إنشاء الحساب
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- شريط التنقل -->
+    <nav class="glass fixed top-0 left-0 right-0 z-50 py-4 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center">
+                    <i class="fas fa-bolt text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold gradient-text">شحن الالعاب</h1>
+                    <p class="text-xs text-gray-400 hidden md:block">أرخص شحن ألعاب</p>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="text-gray-300 hover:text-white transition">الرئيسية</a>
+                <a href="#games" class="text-gray-300 hover:text-white transition">الألعاب</a>
+                <a href="#how-to" class="text-gray-300 hover:text-white transition">كيفية الطلب</a>
+                <a href="#reviews" class="text-gray-300 hover:text-white transition">التقييمات</a>
+                <button onclick="openOrderModal('pubg')" class="btn-primary">
+                    <i class="fas fa-shopping-cart ml-2"></i>
+                    اطلب الآن
+                </button>
+                <button onclick="logout()" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+            
+            <button class="md:hidden w-10 h-10 glass rounded-xl flex items-center justify-center" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- قائمة الجوال -->
+        <div id="mobile-menu" class="md:hidden mt-4 glass rounded-xl p-4 hidden">
+            <div class="space-y-3">
+                <a href="#home" class="block text-gray-300 hover:text-white transition p-3 rounded-lg hover:bg-white/5">الرئيسية</a>
+                <a href="#games" class="block text-gray-300 hover:text-white transition p-3 rounded-lg hover:bg-white/5">الألعاب</a>
+                <a href="#how-to" class="block text-gray-300 hover:text-white transition p-3 rounded-lg hover:bg-white/5">كيفية الطلب</a>
+                <a href="#reviews" class="block text-gray-300 hover:text-white transition p-3 rounded-lg hover:bg-white/5">التقييمات</a>
+                <button onclick="openOrderModal('pubg')" class="w-full btn-primary p-3 rounded-lg">
+                    <i class="fas fa-shopping-cart ml-2"></i>
+                    اطلب الآن
+                </button>
+                <button onclick="logout()" class="w-full text-gray-400 hover:text-white p-3 rounded-lg hover:bg-white/5 text-right">
+                    <i class="fas fa-sign-out-alt ml-2"></i>
+                    تسجيل الخروج
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- القسم الرئيسي -->
+    <section id="home" class="pt-24 pb-20 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-fade">
+                    <div class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 mb-6">
+                        <span class="text-sm">
+                            <i class="fas fa-gift ml-2"></i>
+                            خصم 25% لفترة محدودة
+                        </span>
+                    </div>
+                    
+                    <h1 class="hero-title text-5xl md:text-6xl font-black mb-6 leading-tight">
+                        اشحن 
+                        <span class="gradient-text text-glow">ألعابك</span>
+                        <br>
+                        بأرخص سعر
+                        <br>
+                        في مصر
+                    </h1>
+                    
+                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                        نوفر لك أرخص أسعار شحن الألعاب مع سرعة توصيل فائقة وضمان كامل. 
+                        انضم إلى أكثر من 150 عميل يثقون في خدماتنا.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="scrollToGames()" class="btn-primary px-8 py-3 text-lg">
+                            <i class="fas fa-gamepad ml-2"></i>
+                            ابدأ الشحن الآن
+                        </button>
+                        <a href="#how-to" class="px-8 py-3 text-lg glass rounded-xl hover:bg-white/5 transition inline-flex items-center">
+                            <i class="fas fa-play-circle ml-2"></i>
+                            شاهد الشرح
+                        </a>
+                    </div>
+                    
+                    <!-- إحصائيات -->
+                    <div class="grid grid-cols-3 gap-6 mt-12">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-primary mb-1">+150</div>
+                            <div class="text-sm text-gray-400">عميل راضي</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-secondary mb-1">99%</div>
+                            <div class="text-sm text-gray-400">رضا العملاء</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-accent mb-1">5 د</div>
+                            <div class="text-sm text-gray-400">متوسط التوصيل</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative scroll-fade">
+                    <div class="glass p-8 rounded-2xl floating">
+                        <div class="text-center mb-8">
+                            <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-bolt text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">الطلب السريع</h3>
+                            <p class="text-gray-400">اشحن لعبتك في دقائق</p>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-gray-400 mb-3">رقم الآيدي</label>
+                                <input type="text" placeholder="مثال: 518834221" 
+                                    class="input-field" id="quick-player-id">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-400 mb-3">اختر اللعبة</label>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <button onclick="quickSelect('pubg')" class="p-4 glass rounded-xl hover:border-primary transition text-center quick-game-btn" data-game="pubg">
+                                        <i class="fas fa-mobile-alt text-primary text-xl mb-2 block"></i>
+                                        <div class="text-sm">ببجي</div>
+                                    </button>
+                                    <button onclick="quickSelect('ff')" class="p-4 glass rounded-xl hover:border-secondary transition text-center quick-game-btn" data-game="ff">
+                                        <i class="fas fa-gem text-secondary text-xl mb-2 block"></i>
+                                        <div class="text-sm">فري فاير</div>
+                                    </button>
+                                    <button onclick="quickSelect('fifa')" class="p-4 glass rounded-xl hover:border-accent transition text-center quick-game-btn" data-game="fifa">
+                                        <i class="fas fa-futbol text-accent text-xl mb-2 block"></i>
+                                        <div class="text-sm">فيفا</div>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <button onclick="quickOrder()" class="w-full btn-secondary py-4">
+                                <i class="fab fa-whatsapp ml-2"></i>
+                                أكمل عبر واتساب
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- عناصر زخرفية -->
+                    <div class="absolute -top-6 -right-6 w-32 h-32 bg-primary/10 rounded-full blur-3xl -z-10"></div>
+                    <div class="absolute -bottom-6 -left-6 w-40 h-40 bg-secondary/10 rounded-full blur-3xl -z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- قسم الألعاب -->
+    <section id="games" class="py-20 px-6 md:px-12 bg-gradient-to-b from-transparent to-dark/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 scroll-fade">
+                <h2 class="section-title text-4xl font-bold inline-block">
+                    <span class="gradient-text">🎮 الألعاب المتاحة</span>
+                </h2>
+                <p class="text-xl text-gray-400 mt-4">اختر لعبتك المفضلة واستمتع بأرخص الأسعار</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- PUBG -->
+                <div class="game-card glass p-8 rounded-2xl scroll-fade" style="animation-delay: 0.1s">
+                    <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-4">ببجي موبايل</h3>
+                    <p class="text-gray-400 text-center mb-6">شحن UC بأسرع وقت وأقل سعر</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between items-center p-4 glass rounded-xl">
+                            <span>60 UC</span>
+                            <span class="font-bold text-primary">45 جنيه</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 glass rounded-xl bg-gradient-to-r from-primary/20 to-transparent">
+                            <span>325 UC</span>
+                            <span class="font-bold text-primary">185 جنيه</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 glass rounded-xl">
+                            <span>660 UC</span>
+                            <span class="font-bold text-primary">370 جنيه</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="openOrderModal('pubg')" class="w-full btn-primary py-3">
+                        <i class="fas fa-shopping-cart ml-2"></i>
+                        اختر باقة
+                    </button>
+                </div>
+                
+                <!-- Free Fire -->
+                <div class="game-card glass p-8 rounded-2xl scroll-fade" style="animation-delay: 0.2s">
+                    <div class="w-20 h-20 bg-gradient-to-r from-secondary to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-gem text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-4">فري فاير</h3>
+                    <p class="text-gray-400 text-center mb-6">عروض خاصة على الجواهر</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between items-center p-4 glass rounded-xl">
+                            <span>100 Diamond</span>
+                            <span class="font-bold text-secondary">35 جنيه</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 glass rounded-xl bg-gradient-to-r from-secondary/20 to-transparent">
+                            <span>530 Diamonds</span>
+                            <span class="font-bold text-secondary">160 جنيه</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 glass rounded-xl">
+                            <span>1080 Diamonds</span>
+                            <span class="font-bold text-secondary">310 جنيه</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="openOrderModal('ff')" class="w-full btn-primary py-3">
+                        <i class="fas fa-shopping-cart ml-2"></i>
+                        اختر باقة
+                    </button>
+                </div>
+                
+                <!-- FIFA -->
+                <div class="game-card glass p-8 rounded-2xl scroll-fade" style="animation-delay: 0.3s">
+                    <div class="w-20 h-20 bg-gradient-to-r from-accent to-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-futbol text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-4">فيفا FC 25</h3>
+                    <p class="text-gray-400 text-center mb-6">أرخص سعر كوينز ونقاط</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between items-center p-4 glass rounded-xl">
+                            <span>500 FC Points</span>
+                            <span class="font-bold text-accent">200 جنيه</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 glass rounded-xl bg-gradient-to-r from-accent/20 to-transparent">
+                            <span>1050 FC Points</span>
+                            <span class="font-bold text-accent">380 جنيه</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 glass rounded-xl">
+                            <span>2800 FC Points</span>
+                            <span class="font-bold text-accent">950 جنيه</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="openOrderModal('fifa')" class="w-full btn-primary py-3">
+                        <i class="fas fa-shopping-cart ml-2"></i>
+                        اختر باقة
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- كيفية الطلب -->
+    <section id="how-to" class="py-20 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 scroll-fade">
+                <h2 class="section-title text-4xl font-bold inline-block">
+                    <span class="gradient-text">📱 كيفية الطلب</span>
+                </h2>
+                <p class="text-xl text-gray-400 mt-4">4 خطوات بسيطة لشحن لعبتك المفضلة</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="step-card scroll-fade" style="animation-delay: 0.1s">
+                    <div class="step-number">1</div>
+                    <h3 class="text-xl font-bold mb-3">اختر اللعبة</h3>
+                    <p class="text-gray-400">اختر لعبتك المفضلة من القائمة</p>
+                </div>
+                
+                <div class="step-card scroll-fade" style="animation-delay: 0.2s">
+                    <div class="step-number">2</div>
+                    <h3 class="text-xl font-bold mb-3">ادخل الآيدي</h3>
+                    <p class="text-gray-400">أدخل رقم الآيدي الخاص بك</p>
+                </div>
+                
+                <div class="step-card scroll-fade" style="animation-delay: 0.3s">
+                    <div class="step-number">3</div>
+                    <h3 class="text-xl font-bold mb-3">اختر الباقة</h3>
+                    <p class="text-gray-400">اختر الباقة المناسبة من العروض</p>
+                </div>
+                
+                <div class="step-card scroll-fade" style="animation-delay: 0.4s">
+                    <div class="step-number">4</div>
+                    <h3 class="text-xl font-bold mb-3">ادفع واستلم</h3>
+                    <p class="text-gray-400">ادفع واستلم شحنك خلال 5 دقائق</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- نافذة الطلب -->
+    <div id="order-modal">
+        <div class="order-container">
+            <div class="flex justify-between items-center mb-8">
+                <h2 id="order-title" class="text-3xl font-bold gradient-text"></h2>
+                <button onclick="closeOrderModal()" class="w-10 h-10 glass rounded-xl flex items-center justify-center hover:rotate-90 transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="equal-col">
+                <!-- الجانب الأيسر: معلومات الطلب -->
+                <div class="space-y-8">
+                    <!-- رقم الآيدي -->
+                    <div>
+                        <label class="block text-gray-300 mb-4 text-lg">
+                            <i class="fas fa-id-card ml-2"></i>
+                            رقم الآيدي (Player ID)
+                        </label>
+                        <input type="text" id="player-id" placeholder="أدخل رقم الآيدي الخاص بك" 
+                            class="input-field text-lg p-4">
+                    </div>
+                    
+                    <!-- معلومات الدفع -->
+                    <div>
+                        <label class="block text-gray-300 mb-4 text-lg">
+                            <i class="fas fa-credit-card ml-2"></i>
+                            معلومات الدفع
+                        </label>
+                        <div class="glass p-6 rounded-xl">
+                            <p class="text-gray-300 mb-4">قم بالتحويل لمبلغ الباقة على:</p>
+                            <div class="bg-gradient-to-r from-primary/20 to-secondary/20 p-4 rounded-lg mb-4">
+                                <div class="text-sm text-gray-400 mb-2">رقم اورانج كاش:</div>
+                                <div class="text-2xl font-bold direction-ltr text-center font-mono">01207771639</div>
+                            </div>
+                            <p class="text-sm text-gray-400">
+                                <i class="fas fa-info-circle ml-2"></i>
+                                سيتم التأكيد خلال 1-5 دقائق من التحويل
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- رفع الإثبات -->
+                    <div>
+                        <label class="block text-gray-300 mb-4 text-lg">
+                            <i class="fas fa-image ml-2"></i>
+                            إثبات التحويل
+                        </label>
+                        <div onclick="document.getElementById('payment-proof').click()" class="border-2 border-dashed border-gray-700 rounded-xl p-8 text-center hover:border-primary transition cursor-pointer" id="upload-area">
+                            <i class="fas fa-cloud-upload-alt text-3xl text-gray-500 mb-4"></i>
+                            <p class="text-gray-400 mb-2">اسحب وأفلت صورة التحويل هنا</p>
+                            <p class="text-sm text-gray-500">أو انقر للرفع من جهازك</p>
+                            <input type="file" class="hidden" id="payment-proof" accept="image/*" onchange="handleFileUpload(event)">
+                        </div>
+                        <div id="file-preview" class="mt-4 hidden">
+                            <div class="glass p-4 rounded-xl flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <i class="fas fa-image text-primary ml-3"></i>
+                                    <span id="file-name" class="text-sm"></span>
+                                </div>
+                                <button onclick="removeFile()" class="text-red-400 hover:text-red-300">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- الجانب الأيمن: اختيار الباقة -->
+                <div class="space-y-8">
+                    <!-- الباقات -->
+                    <div>
+                        <label class="block text-gray-300 mb-6 text-xl">
+                            <i class="fas fa-boxes ml-2"></i>
+                            اختر الباقة المناسبة
+                        </label>
+                        <div id="packages-container" class="space-y-4">
+                            <!-- الباقات ستظهر هنا -->
+                        </div>
+                    </div>
+                    
+                    <!-- ملخص الطلب -->
+                    <div>
+                        <label class="block text-gray-300 mb-4 text-lg">
+                            <i class="fas fa-receipt ml-2"></i>
+                            تفاصيل طلبك
+                        </label>
+                        <div class="glass p-6 rounded-xl space-y-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">اللعبة:</span>
+                                <span id="summary-game" class="font-bold">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">الباقة:</span>
+                                <span id="summary-package" class="font-bold">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">السعر:</span>
+                                <span id="summary-price" class="font-bold text-lg text-primary">-</span>
+                            </div>
+                            <div class="pt-4 border-t border-gray-800">
+                                <div class="flex justify-between text-lg">
+                                    <span>الإجمالي:</span>
+                                    <span id="summary-total" class="text-xl font-bold gradient-text">0 جنيه</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- زر الإرسال -->
+                    <button onclick="submitOrder()" class="w-full btn-secondary py-4 text-xl">
+                        <i class="fab fa-whatsapp ml-2"></i>
+                        أكمل الطلب عبر واتساب
+                    </button>
+                    
+                    <p class="text-center text-gray-500 text-sm">
+                        <i class="fas fa-shield-alt ml-2"></i>
+                        جميع عمليات الدفع آمنة ومشفرة
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- تقييمات العملاء -->
+    <section id="reviews" class="py-20 px-6 md:px-12 bg-gradient-to-b from-transparent to-dark/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 scroll-fade">
+                <h2 class="section-title text-4xl font-bold inline-block">
+                    <span class="gradient-text">⭐ تقييمات العملاء</span>
+                </h2>
+                <p class="text-xl text-gray-400 mt-4">ماذا يقول عملاؤنا عن خدماتنا</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="review-card glass p-8 rounded-2xl scroll-fade" style="animation-delay: 0.1s">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-primary to-purple-600 flex items-center justify-center text-white font-bold text-xl">
+                            أ
+                        </div>
+                        <div class="mr-4">
+                            <h4 class="text-lg font-bold">خالد عوض</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "أسرع شحن جربته في حياتي، والخدمة ممتازة والأسعار فعلاً للغلابة!"
+                    </p>
+                    <div class="mt-4 text-sm text-gray-500">2023-10-01</div>
+                </div>
+                
+                <div class="review-card glass p-8 rounded-2xl scroll-fade" style="animation-delay: 0.2s">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-secondary to-pink-600 flex items-center justify-center text-white font-bold text-xl">
+                            ي
+                        </div>
+                        <div class="mr-4">
+                            <h4 class="text-lg font-bold">معتز عبدالفتاح</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "خدمة محترمة جداً والشدات وصلت في 5 دقائق. أنصح بيهم!"
+                    </p>
+                    <div class="mt-4 text-sm text-gray-500">أمس</div>
+                </div>
+                
+                <div class="review-card glass p-8 rounded-2xl scroll-fade" style="animation-delay: 0.3s">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-accent to-blue-600 flex items-center justify-center text-white font-bold text-xl">
+                            م
+                        </div>
+                        <div class="mr-4">
+                            <h4 class="text-lg font-bold">محمد عاطف</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "عروض فيفا كويسة جداً والكوينز وصلت في دقائق. شكراً لكم!"
+                    </p>
+                    <div class="mt-4 text-sm text-gray-500">منذ 1 أيام</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- الفوتر -->
+    <footer class="py-12 px-6 md:px-12 border-t border-gray-800/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center">
+                            <i class="fas fa-bolt text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold gradient-text">شحن ببجي</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        أرخص وأسرع شحن ألعاب في مصر. نوفر لكم أفضل الأسعار مع ضمان الجودة والسرعة.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">روابط سريعة</h4>
+                    <div class="space-y-3">
+                        <a href="#home" class="block text-gray-400 hover:text-white transition">الرئيسية</a>
+                        <a href="#games" class="block text-gray-400 hover:text-white transition">الألعاب</a>
+                        <a href="#how-to" class="block text-gray-400 hover:text-white transition">كيفية الطلب</a>
+                        <a href="#reviews" class="block text-gray-400 hover:text-white transition">التقييمات</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">تواصل معنا</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center text-gray-400">
+                            <i class="fab fa-whatsapp text-green-400 ml-3"></i>
+                            <span>01207771639</span>
+                        </div>
+                        <div class="flex items-center text-gray-400">
+                            <i class="fas fa-phone text-primary ml-3"></i>
+                            <span>الدعم الفني: 24/7</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">طرق الدفع</h4>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="px-3 py-2 bg-orange-500/20 text-orange-300 rounded-lg text-sm">Orange Cash</div>
+                        <div class="px-3 py-2 bg-green-500/20 text-green-300 rounded-lg text-sm">Vodafone Cash</div>
+                        <div class="px-3 py-2 bg-blue-500/20 text-blue-300 rounded-lg text-sm">Fawry</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- قسم إعلان المصمم -->
+            <div class="designer-ad">
+                <div style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 1rem;
+                    margin-bottom: 1rem;
+                    flex-wrap: wrap;
+                ">
+                    <div style="
+                        background: white;
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 1.5rem;
+                        color: var(--primary);
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                    ">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div style="text-align: right;">
+                        <h4 style="
+                            color: white;
+                            margin-bottom: 0.5rem;
+                            font-size: 1.2rem;
+                        ">صمم الموقع بواسطة</h4>
+                        <p style="
+                            color: rgba(255, 255, 255, 0.9);
+                            font-size: 1.1rem;
+                            font-weight: 600;
+                            margin-bottom: 0.3rem;
+                        ">
+                            <i class="fas fa-user-tie" style="margin-left: 0.5rem;"></i>
+                            En.kareem ibrahem
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.8rem;
+                    background: rgba(255, 255, 255, 0.15);
+                    padding: 0.8rem 1.5rem;
+                    border-radius: 12px;
+                    max-width: 300px;
+                    margin: 0 auto;
+                    transition: all 0.3s ease;
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                ">
+                    <i class="fab fa-whatsapp" style="
+                        color: #25D366;
+                        font-size: 1.3rem;
+                    "></i>
+                    <a href="https://wa.me/+201207771639" target="_blank" style="
+                        color: white;
+                        text-decoration: none;
+                        font-weight: 600;
+                        font-size: 1.1rem;
+                        transition: all 0.3s ease;
+                    ">
+                        +20 120 777 1639
+                    </a>
+                    <i class="fas fa-external-link-alt" style="
+                        color: rgba(255, 255, 255, 0.7);
+                        font-size: 0.9rem;
+                    "></i>
+                </div>
+                
+                <p style="
+                    color: rgba(255, 255, 255, 0.7);
+                    font-size: 0.9rem;
+                    margin-top: 1rem;
+                    font-style: italic;
+                ">
+                    <i class="fas fa-palette" style="margin-left: 0.5rem;"></i>
+                    تصميم مواقع احترافية وتطبيقات ويب متكاملة
+                </p>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800/50 text-center">
+                <p class="text-gray-500">© 2024 شحن الالعاب. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- زر العودة للأعلى -->
+    <button onclick="scrollToTop()" id="scroll-top" class="fixed bottom-6 left-6 w-12 h-12 gradient-bg rounded-xl flex items-center justify-center text-white shadow-lg hover:scale-110 transition z-40 hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- زر الواتساب -->
+    <button onclick="openWhatsApp()" class="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition z-40">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </button>
+
+    <script>
+        // بيانات الألعاب
+        const gamesData = {
+            pubg: {
+                title: "ببجي موبايل - شحن UC",
+                packages: [
+                    { name: "60 UC", price: "45 جنيه", popular: false },
+                    { name: "325 UC (عرض خاص)", price: "185 جنيه", popular: true },
+                    { name: "660 UC + 60 مجاناً", price: "370 جنيه", popular: false },
+                    { name: "1800 UC (خصم 15%)", price: "850 جنيه", popular: false },
+                    { name: "3850 UC (العرض الذهبي)", price: "1650 جنيه", popular: true }
+                ]
+            },
+            ff: {
+                title: "فري فاير - شحن الجواهر",
+                packages: [
+                    { name: "100 Diamond", price: "35 جنيه", popular: false },
+                    { name: "530 Diamonds", price: "160 جنيه", popular: true },
+                    { name: "1080 Diamonds (الأكثر طلباً)", price: "310 جنيه", popular: true },
+                    { name: "2200 Diamonds", price: "600 جنيه", popular: false }
+                ]
+            },
+            fifa: {
+                title: "فيفا FC 25 - شحن النقاط",
+                packages: [
+                    { name: "500 FC Points", price: "200 جنيه", popular: false },
+                    { name: "1050 FC Points", price: "380 جنيه", popular: true },
+                    { name: "2800 FC Points", price: "950 جنيه", popular: false },
+                    { name: "12,000 FC Points (VIP)", price: "3500 جنيه", popular: true }
+                ]
+            }
+        };
+        
+        let currentGame = null;
+        let selectedPackage = null;
+        let uploadedFile = null;
+        
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            // التحقق من حالة الدخول
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const guestMode = localStorage.getItem('guestMode');
+            
+            if (isLoggedIn || guestMode) {
+                hideLoginScreen();
+            }
+            
+            // إعداد شريط التقدم
+            setupProgressBar();
+            
+            // إعداد تأثيرات التمرير
+            setupScrollEffects();
+            
+            // إعداد زر العودة للأعلى
+            setupScrollTopButton();
+            
+            // إعداد التنقل السلس
+            setupSmoothScroll();
+            
+            // إعداد السحب والإفلات للصور
+            setupDragAndDrop();
+            
+            // تحديث تاريخ التقييمات
+            updateReviewDates();
+        });
+        
+        // تسجيل الدخول
+        function login() {
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+            
+            if (!email || !password) {
+                showNotification('يرجى ملء جميع الحقول', 'error');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showNotification('يرجى إدخال بريد إلكتروني صحيح', 'error');
+                return;
+            }
+            
+            // محاكاة تسجيل الدخول
+            showNotification('جاري تسجيل الدخول...', 'info');
+            
+            setTimeout(() => {
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                hideLoginScreen();
+                showNotification('تم تسجيل الدخول بنجاح!', 'success');
+            }, 1500);
+        }
+        
+        function skipLogin() {
+            localStorage.setItem('guestMode', 'true');
+            hideLoginScreen();
+            showNotification('مرحباً بك كضيف', 'info');
+        }
+        
+        function hideLoginScreen() {
+            const loginScreen = document.getElementById('login-screen');
+            loginScreen.style.opacity = '0';
+            setTimeout(() => {
+                loginScreen.style.display = 'none';
+            }, 500);
+        }
+        
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('guestMode');
+            localStorage.removeItem('userEmail');
+            
+            const loginScreen = document.getElementById('login-screen');
+            loginScreen.style.display = 'flex';
+            setTimeout(() => {
+                loginScreen.style.opacity = '1';
+            }, 10);
+            
+            showNotification('تم تسجيل الخروج', 'info');
+            scrollToTop();
+        }
+        
+        function showRegister() {
+            document.getElementById('register-modal').style.display = 'flex';
+        }
+        
+        function closeRegister() {
+            document.getElementById('register-modal').style.display = 'none';
+        }
+        
+        function register() {
+            const name = document.getElementById('register-name').value.trim();
+            const email = document.getElementById('register-email').value.trim();
+            const password = document.getElementById('register-password').value.trim();
+            const confirmPassword = document.getElementById('register-confirm-password').value.trim();
+            
+            if (!name || !email || !password || !confirmPassword) {
+                showNotification('يرجى ملء جميع الحقول', 'error');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showNotification('يرجى إدخال بريد إلكتروني صحيح', 'error');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showNotification('كلمتا المرور غير متطابقتين', 'error');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showNotification('كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
+                return;
+            }
+            
+            showNotification('جاري إنشاء الحساب...', 'info');
+            
+            setTimeout(() => {
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('userName', name);
+                
+                closeRegister();
+                hideLoginScreen();
+                showNotification('تم إنشاء الحساب بنجاح!', 'success');
+            }, 1500);
+        }
+        
+        // التحقق من صحة الإيميل
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // شريط التقدم
+        function setupProgressBar() {
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById('progressBar').style.width = scrolled + "%";
+            });
+        }
+        
+        // تأثيرات التمرير
+        function setupScrollEffects() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.scroll-fade').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        // زر العودة للأعلى
+        function setupScrollTopButton() {
+            const scrollBtn = document.getElementById('scroll-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollBtn.classList.remove('hidden');
+                } else {
+                    scrollBtn.classList.add('hidden');
+                }
+            });
+        }
+        
+        // التنقل السلس
+        function setupSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // إغلاق قائمة الجوال إذا كانت مفتوحة
+                        document.getElementById('mobile-menu').classList.add('hidden');
+                    }
+                });
+            });
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function scrollToGames() {
+            document.getElementById('games').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        
+        // قائمة الجوال
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // السحب والإفلات
+        function setupDragAndDrop() {
+            const uploadArea = document.getElementById('upload-area');
+            
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            function highlight() {
+                uploadArea.classList.add('border-primary');
+            }
+            
+            function unhighlight() {
+                uploadArea.classList.remove('border-primary');
+            }
+            
+            uploadArea.addEventListener('drop', handleDrop, false);
+            
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                handleFiles(files);
+            }
+        }
+        
+        function handleFiles(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                if (file.type.startsWith('image/')) {
+                    uploadedFile = file;
+                    showFilePreview(file);
+                } else {
+                    showNotification('يرجى رفع صورة فقط', 'error');
+                }
+            }
+        }
+        
+        function handleFileUpload(event) {
+            const files = event.target.files;
+            handleFiles(files);
+        }
+        
+        function showFilePreview(file) {
+            document.getElementById('file-name').textContent = file.name;
+            document.getElementById('file-preview').classList.remove('hidden');
+        }
+        
+        function removeFile() {
+            uploadedFile = null;
+            document.getElementById('payment-proof').value = '';
+            document.getElementById('file-preview').classList.add('hidden');
+        }
+        
+        // تحديث تواريخ التقييمات
+        function updateReviewDates() {
+            const now = new Date();
+            const yesterday = new Date(now);
+            yesterday.setDate(yesterday.getDate() - 1);
+            
+            const reviewDates = document.querySelectorAll('.review-card .text-gray-500');
+            if (reviewDates.length >= 2) {
+                // تحديث التاريخ الثاني ليكون "أمس"
+                reviewDates[1].textContent = 'أمس';
+                
+                // تحديث التاريخ الثالث ليكون "منذ يومين"
+                const twoDaysAgo = new Date(now);
+                twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+                reviewDates[2].textContent = 'منذ يومين';
+            }
+        }
+        
+        // نافذة الطلب
+        function openOrderModal(gameId) {
+            currentGame = gameId;
+            selectedPackage = null;
+            const game = gamesData[gameId];
+            
+            document.getElementById('order-title').textContent = game.title;
+            document.getElementById('summary-game').textContent = game.title;
+            document.getElementById('summary-package').textContent = '-';
+            document.getElementById('summary-price').textContent = '-';
+            document.getElementById('summary-total').textContent = '0 جنيه';
+            
+            // إعادة تعيين حقل الآيدي
+            document.getElementById('player-id').value = '';
+            
+            // تعبئة الباقات
+            const container = document.getElementById('packages-container');
+            container.innerHTML = '';
+            
+            game.packages.forEach((pkg, index) => {
+                const packageElement = document.createElement('div');
+                packageElement.className = `package-item glass p-4 rounded-xl cursor-pointer transition border-2 ${
+                    pkg.popular ? 'border-primary' : 'border-transparent'
+                }`;
+                packageElement.onclick = () => selectPackage(pkg, packageElement);
+                
+                const isPopular = pkg.popular ? `
+                    <span class="px-2 py-1 bg-gradient-to-r from-primary to-secondary rounded-lg text-xs text-white">
+                        ${index === 1 ? 'الأكثر طلباً' : 'عرض خاص'}
+                    </span>
+                ` : '';
+                
+                packageElement.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <div class="text-right">
+                            <div class="text-lg font-bold mb-1">${pkg.name}</div>
+                            ${isPopular}
+                        </div>
+                        <div class="text-left">
+                            <div class="text-xl font-bold gradient-text">${pkg.price}</div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(packageElement);
+                
+                // تحديد أول باقة شعبية بشكل افتراضي
+                if (index === 1) {
+                    selectPackage(pkg, packageElement);
+                }
+            });
+            
+            document.getElementById('order-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeOrderModal() {
+            document.getElementById('order-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            uploadedFile = null;
+            removeFile();
+        }
+        
+        function selectPackage(pkg, element) {
+            selectedPackage = pkg;
+            
+            // إزالة التحديد من جميع الباقات
+            document.querySelectorAll('.package-item').forEach(pkgEl => {
+                pkgEl.classList.remove('border-primary');
+                pkgEl.classList.add('border-transparent');
+            });
+            
+            // إضافة التحديد للباقة المختارة
+            element.classList.remove('border-transparent');
+            element.classList.add('border-primary');
+            
+            // تحديث الملخص
+            document.getElementById('summary-package').textContent = pkg.name;
+            document.getElementById('summary-price').textContent = pkg.price;
+            document.getElementById('summary-total').textContent = pkg.price;
+        }
+        
+        // الطلب السريع
+        function quickSelect(gameId) {
+            const quickPlayerId = document.getElementById('quick-player-id').value;
+            if (quickPlayerId) {
+                document.getElementById('player-id').value = quickPlayerId;
+            }
+            openOrderModal(gameId);
+        }
+        
+        function quickOrder() {
+            const playerId = document.getElementById('quick-player-id').value;
+            
+            if (!playerId) {
+                showNotification('يرجى إدخال رقم الآيدي', 'error');
+                return;
+            }
+            
+            if (!currentGame) {
+                showNotification('يرجى اختيار اللعبة', 'error');
+                return;
+            }
+            
+            // فتح نافذة الطلب مع اللعبة المختارة
+            openOrderModal(currentGame);
+        }
+        
+        // إرسال الطلب
+        function submitOrder() {
+            const playerId = document.getElementById('player-id').value;
+            
+            if (!playerId) {
+                showNotification('يرجى إدخال رقم الآيدي', 'error');
+                return;
+            }
+            
+            if (!selectedPackage) {
+                showNotification('يرجى اختيار باقة', 'error');
+                return;
+            }
+            
+            if (!uploadedFile) {
+                showNotification('يرجى رفع صورة إثبات التحويل', 'error');
+                return;
+            }
+            
+            sendWhatsAppMessage(playerId, selectedPackage.name + ' - ' + selectedPackage.price);
+            closeOrderModal();
+        }
+        
+        // إرسال رسالة واتساب
+        function sendWhatsAppMessage(playerId, packageInfo) {
+            const gameTitle = currentGame ? gamesData[currentGame].title : 'لعبة';
+            const message = `🎮 *طلب شحن جديد*\n\n`
+                + `*اللعبة:* ${gameTitle}\n`
+                + `*الباقة:* ${packageInfo}\n`
+                + `*رقم الآيدي:* ${playerId}\n\n`
+                + `تم التحويل على رقم اورانج كاش: 01207771639\n`
+                + `يرجى التأكيد والتحقق من الطلب.`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/201207771639?text=${encodedMessage}`, '_blank');
+            
+            showNotification('جاري تحويلك إلى واتساب لإتمام الطلب...', 'success');
+            
+            // تسجيل الطلب في localStorage (محاكاة)
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            orders.push({
+                game: gameTitle,
+                package: packageInfo,
+                playerId: playerId,
+                date: new Date().toISOString(),
+                status: 'pending'
+            });
+            localStorage.setItem('orders', JSON.stringify(orders));
+        }
+        
+        function openWhatsApp() {
+            const message = 'مرحباً، أريد الاستفسار عن خدمات شحن الألعاب';
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/201207771639?text=${encodedMessage}`, '_blank');
+        }
+        
+        // عرض الإشعارات
+        function showNotification(message, type = 'info') {
+            // إزالة أي إشعارات سابقة
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // إنشاء الإشعار الجديد
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            
+            let bgColor = 'from-blue-500 to-blue-600';
+            let icon = 'fa-info-circle';
+            if (type === 'error') {
+                bgColor = 'from-red-500 to-red-600';
+                icon = 'fa-exclamation-circle';
+            } else if (type === 'success') {
+                bgColor = 'from-green-500 to-green-600';
+                icon = 'fa-check-circle';
+            }
+            
+            notification.innerHTML = `
+                <div class="px-6 py-4 rounded-xl flex items-center gap-3 shadow-2xl backdrop-blur-sm bg-gradient-to-r ${bgColor}">
+                    <i class="fas ${icon} text-xl"></i>
+                    <span class="font-bold">${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // إزالة الإشعار بعد 3 ثوان
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(-50%) translateY(-20px)';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+        
+        // تحديث اللعبة المختارة في الطلب السريع
+        document.querySelectorAll('.quick-game-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const gameId = this.getAttribute('data-game');
+                currentGame = gameId;
+                
+                // تحديث التحديد المرئي
+                document.querySelectorAll('.quick-game-btn').forEach(b => {
+                    b.classList.remove('border-primary', 'border-secondary', 'border-accent');
+                });
+                
+                let borderColor = 'border-primary';
+                if (gameId === 'ff') borderColor = 'border-secondary';
+                if (gameId === 'fifa') borderColor = 'border-accent';
+                
+                this.classList.add(borderColor);
+            });
+        });
+    </script>
+</body>
+</html>

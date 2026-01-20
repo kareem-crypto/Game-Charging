@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شحن الغلابة | الرئيسية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-dark: linear-gradient(135deg, #141E30 0%, #243B55 100%);
+            --color-primary: #667eea;
+            --color-secondary: #f5576c;
+            --color-accent: #00f2fe;
+            --color-dark: #0f172a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--gradient-dark);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(245, 87, 108, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 242, 254, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .gradient-bg {
+            background: var(--gradient-primary);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .game-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-20px) rotateX(5deg);
+            box-shadow: 0 40px 80px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-glow {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 16px;
+            font-weight: 600;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-glow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.6);
+        }
+        
+        .btn-glow::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-glow:hover::after {
+            left: 100%;
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid var(--color-primary);
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--color-primary) }
+        }
+        
+        .scroll-btn {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 60px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        
+        .scroll-btn::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 15px;
+            background: var(--color-primary);
+            border-radius: 2px;
+            animation: scroll 2s infinite;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(-50%) translateY(0); opacity: 1; }
+            100% { transform: translateX(-50%) translateY(20px); opacity: 0; }
+        }
+        
+        .floating-chat {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-chat:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            width: 0%;
+            z-index: 10000;
+            transition: width 0.3s ease;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'El Messiri', sans-serif;
+            font-weight: 700;
+        }
+        
+        .hero-title {
+            font-size: 5rem;
+            line-height: 1.1;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Floating Chat -->
+    <div class="floating-chat" onclick="openWhatsApp()">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 py-6 px-8 md:px-16">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center">
+                    <i class="fas fa-bolt text-white text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold gradient-text">شحن الغلابة</h1>
+                    <p class="text-sm text-gray-300">أرخص وأسرع شحن ألعاب</p>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8 space-x-reverse">
+                <a href="#games" class="text-gray-300 hover:text-white transition">الألعاب</a>
+                <a href="#features" class="text-gray-300 hover:text-white transition">المميزات</a>
+                <a href="#steps" class="text-gray-300 hover:text-white transition">كيفية الطلب</a>
+                <a href="#reviews" class="text-gray-300 hover:text-white transition">التقييمات</a>
+                <button class="btn-glow" onclick="logout()">
+                    <i class="fas fa-sign-out-alt mr-2"></i>تسجيل الخروج
+                </button>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden w-12 h-12 glass-card flex items-center justify-center" id="mobileMenuBtn">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden mt-4 glass-card p-6 hidden" id="mobileMenu">
+            <div class="space-y-4">
+                <a href="#games" class="block text-gray-300 hover:text-white transition">الألعاب</a>
+                <a href="#features" class="block text-gray-300 hover:text-white transition">المميزات</a>
+                <a href="#steps" class="block text-gray-300 hover:text-white transition">كيفية الطلب</a>
+                <a href="#reviews" class="block text-gray-300 hover:text-white transition">التقييمات</a>
+                <button class="w-full btn-glow mt-4" onclick="logout()">
+                    <i class="fas fa-sign-out-alt mr-2"></i>تسجيل الخروج
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center relative overflow-hidden" id="hero">
+        <div class="hero-bg"></div>
+        
+        <div class="max-w-7xl mx-auto px-8 md:px-16 py-32 relative z-10">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 mb-8">
+                        <span class="text-purple-300">
+                            <i class="fas fa-gift mr-2"></i>خصم 35% لفترة محدودة
+                        </span>
+                    </div>
+                    
+                    <h1 class="hero-title mb-8">
+                        مرحباً بك في
+                        <br>
+                        <span class="gradient-text typewriter">شحن الغلابة</span>
+                        <br>
+                        اشحن ألعابك بأرخص سعر
+                    </h1>
+                    
+                    <p class="text-xl text-gray-300 mb-12 leading-relaxed">
+                        نوفر لك أرخص أسعار شحن الألعاب مع سرعة توصيل فائقة وضمان كامل. 
+                        أكثر من 50,000 عميل وثقوا في خدماتنا.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button class="btn-glow px-8 py-4 text-lg" onclick="scrollToGames()">
+                            <i class="fas fa-gamepad mr-2"></i>ابدأ الشحن الآن
+                        </button>
+                        <button class="px-8 py-4 text-lg border-2 border-gray-700 hover:border-primary rounded-2xl text-gray-300 hover:text-white transition" onclick="scrollToSteps()">
+                            <i class="fas fa-play-circle mr-2"></i>شاهد الشرح
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="glass-card p-8 floating">
+                        <div class="text-center mb-8">
+                            <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-bolt text-white text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">الطلب الفوري</h3>
+                            <p class="text-gray-400">اشحن لعبتك في أقل من 5 دقائق</p>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-gray-400 mb-3">رقم الآيدي</label>
+                                <input type="text" placeholder="مثال: 518834221" 
+                                    class="w-full p-4 bg-dark-bg border-2 border-gray-800 rounded-xl focus:border-primary transition-all text-white" id="quickIdInput">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-400 mb-3">اختر اللعبة</label>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <button class="p-4 glass-card hover:border-primary transition">
+                                        <i class="fas fa-mobile-alt text-primary text-xl mb-2"></i>
+                                        <div class="text-sm">ببجي</div>
+                                    </button>
+                                    <button class="p-4 glass-card hover:border-secondary transition">
+                                        <i class="fas fa-gem text-secondary text-xl mb-2"></i>
+                                        <div class="text-sm">فري فاير</div>
+                                    </button>
+                                    <button class="p-4 glass-card hover:border-accent transition">
+                                        <i class="fas fa-futbol text-accent text-xl mb-2"></i>
+                                        <div class="text-sm">فيفا</div>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full btn-glow py-4" onclick="quickOrder()">
+                                <i class="fab fa-whatsapp mr-2"></i>أكمل الطلب عبر واتساب
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Button -->
+        <div class="scroll-btn" onclick="scrollToGames()"></div>
+    </section>
+    
+    <!-- بقية محتوى الصفحة الرئيسية ... -->
+    <!-- يمكنك إضافة الأقسام الأخرى هنا -->
+
+    <script>
+        // التحقق من حالة الدخول
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const guestMode = localStorage.getItem('guestMode');
+            
+            if (!isLoggedIn && !guestMode) {
+                // إذا لم يكن مسجلاً دخولاً ولم يكن في وضع الضيف، ارجع إلى صفحة الدخول
+                window.location.href = 'index.html';
+            }
+            
+            setupScroll();
+        });
+        
+        // إعداد شريط التقدم
+        function setupScroll() {
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById('progressBar').style.width = scrolled + "%";
+            });
+        }
+        
+        // Mobile Menu
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // التنقل
+        function scrollToGames() {
+            const gamesSection = document.getElementById('games') || { scrollIntoView: () => {} };
+            gamesSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function scrollToSteps() {
+            const stepsSection = document.getElementById('steps') || { scrollIntoView: () => {} };
+            stepsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // تسجيل الخروج
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('guestMode');
+            localStorage.removeItem('savedEmail');
+            localStorage.removeItem('savedPassword');
+            localStorage.removeItem('loginMethod');
+            
+            window.location.href = 'index.html';
+        }
+        
+        // WhatsApp
+        function openWhatsApp() {
+            const message = 'مرحباً، أريد الاستفسار عن خدمات شحن الألعاب';
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/201207771639?text=${encodedMessage}`, '_blank');
+        }
+        
+        function quickOrder() {
+            const playerId = document.getElementById('quickIdInput').value;
+            
+            if (!playerId) {
+                showNotification('يرجى إدخال رقم الآيدي', 'error');
+                return;
+            }
+            
+            const message = `🎮 *طلب شحن جديد*\n\n`
+                + `*رقم الآيدي:* ${playerId}\n\n`
+                + `يرجى تحديد اللعبة والباقة المطلوبة.`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/201207771639?text=${encodedMessage}`, '_blank');
+            
+            showNotification('جاري تحويلك إلى واتساب لإتمام الطلب...', 'success');
+        }
+        
+        // عرض الإشعارات
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${
+                type === 'error' ? 'error' : 
+                type === 'success' ? 'success' : 
+                'info'
+            }`;
+            
+            let bgColor = 'from-blue-500 to-blue-600';
+            if (type === 'error') bgColor = 'from-red-500 to-red-600';
+            if (type === 'success') bgColor = 'from-green-500 to-green-600';
+            
+            notification.innerHTML = `
+                <div class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 px-6 py-4 rounded-xl flex items-center gap-3 shadow-2xl backdrop-blur-sm bg-gradient-to-r ${bgColor}">
+                    <span class="font-bold">${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translate(-50%, -20px)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
