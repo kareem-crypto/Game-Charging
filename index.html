@@ -153,7 +153,6 @@
         .game-card {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            overflow: hidden;
         }
         
         .game-card:hover {
@@ -162,144 +161,7 @@
             border-color: var(--primary);
         }
         
-        .game-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 12px 12px 0 0;
-            transition: transform 0.3s ease;
-        }
-        
-        .game-card:hover .game-image {
-            transform: scale(1.05);
-        }
-        
-        /* قائمة الأسعار المحسنة */
-        .price-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .price-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .price-item:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .price-item.popular {
-            background: linear-gradient(135deg, 
-                rgba(109, 40, 217, 0.15), 
-                rgba(16, 185, 129, 0.15));
-            border-color: rgba(109, 40, 217, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .price-item.popular::before {
-            content: 'الأكثر طلباً';
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-weight: bold;
-        }
-        
-        .price-item .amount {
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        /* تحسينات لقسم كيفية الطلب */
-.step-card {
-    position: relative;
-    padding: 2rem;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
-    text-align: center;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.step-card:hover {
-    background: rgba(255, 255, 255, 0.07);
-    transform: translateY(-5px);
-    border-color: var(--primary);
-    box-shadow: 0 10px 30px rgba(109, 40, 217, 0.2);
-}
-
-.step-number {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1.5rem;
-    margin: 0 auto 1.5rem;
-    box-shadow: 0 5px 15px rgba(109, 40, 217, 0.3);
-}
-
-.step-number i {
-    font-size: 1.5rem;
-    color: white;
-}
-
-.feature-card {
-    transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--secondary);
-}
-
-/* تحسينات للجوال */
-@media (max-width: 768px) {
-    .step-card {
-        padding: 1.5rem;
-    }
-    
-    .step-number {
-        width: 50px;
-        height: 50px;
-        font-size: 1.25rem;
-    }
-    
-    .step-number i {
-        font-size: 1.25rem;
-    }
-}
-        
-        .price-item .price {
-            font-weight: 700;
-            font-size: 18px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        /* نافذة الطلب المحسنة */
+        /* نافذة الطلب */
         #order-modal {
             display: none;
             position: fixed;
@@ -307,7 +169,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             z-index: 1000;
             align-items: center;
@@ -322,9 +184,7 @@
         }
         
         .order-container {
-            background: linear-gradient(135deg, 
-                rgba(15, 23, 42, 0.95), 
-                rgba(2, 6, 23, 0.98));
+            background: rgba(15, 23, 42, 0.95);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 2.5rem;
@@ -333,7 +193,6 @@
             max-height: 90vh;
             overflow-y: auto;
             animation: modalSlide 0.4s ease;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
         
         @keyframes modalSlide {
@@ -347,33 +206,30 @@
             }
         }
         
-        /* تحسينات للجوال */
-        @media (max-width: 768px) {
-            .login-container,
-            .order-container {
-                padding: 1.5rem;
-                margin: 1rem;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem !important;
-            }
-            
-            .equal-col {
-                grid-template-columns: 1fr !important;
-            }
-            
-            .price-item {
-                padding: 12px;
-            }
-            
-            .price-item .amount {
-                font-size: 14px;
-            }
-            
-            .price-item .price {
-                font-size: 16px;
-            }
+        /* نافذة التسجيل */
+        #register-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        /* عناصر عائمة */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
         
         /* تأثيرات التمرير */
@@ -400,11 +256,119 @@
             transition: width 0.3s ease;
         }
         
+        /* تحسينات للجوال */
+        @media (max-width: 768px) {
+            .login-container,
+            .order-container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem !important;
+            }
+            
+            .equal-col {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        /* تأثيرات النص */
+        .text-glow {
+            text-shadow: 0 0 20px rgba(109, 40, 217, 0.5);
+        }
+        
+        /* تقسيمات متساوية */
+        .equal-col {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .equal-col {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* تحسينات للعناوين */
+        .section-title {
+            position: relative;
+            padding-bottom: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        /* بطاقات التقييمات */
+        .review-card {
+            transition: all 0.3s ease;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* خطوات الطلب */
+        .step-card {
+            position: relative;
+            padding: 2rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+        
+        .step-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* إشعارات */
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10001;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+        
         /* إعلان المصمم */
         .designer-ad {
-            background: linear-gradient(135deg, 
-                rgba(109, 40, 217, 0.1), 
-                rgba(16, 185, 129, 0.1));
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             padding: 1.5rem;
             margin-top: 2rem;
@@ -412,18 +376,54 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             animation: fadeIn 1s ease;
-            position: relative;
-            overflow: hidden;
         }
         
-        .designer-ad::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        /* رسائل الخطأ */
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .input-error {
+            border-color: #ef4444 !important;
+        }
+        
+        .input-success {
+            border-color: #10b981 !important;
+        }
+        
+        /* تأثيرات خاصة */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* شريط المستخدم */
+        .user-welcome {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -446,11 +446,13 @@
                 <div>
                     <label class="block text-gray-300 mb-2">البريد الإلكتروني</label>
                     <input type="email" id="login-email" placeholder="example@gmail.com" class="input-field">
+                    <div id="login-email-error" class="error-message">يرجى إدخال بريد إلكتروني صحيح</div>
                 </div>
                 
                 <div>
                     <label class="block text-gray-300 mb-2">كلمة المرور</label>
                     <input type="password" id="login-password" placeholder="********" class="input-field">
+                    <div id="login-password-error" class="error-message">يرجى إدخال كلمة المرور</div>
                 </div>
                 
                 <button onclick="login()" class="btn-primary w-full py-3 text-lg">
@@ -489,21 +491,25 @@
                 <div>
                     <label class="block text-gray-300 mb-2">الاسم الكامل</label>
                     <input type="text" id="register-name" placeholder="أحمد محمد" class="input-field">
+                    <div id="register-name-error" class="error-message">يرجى إدخال الاسم الكامل</div>
                 </div>
                 
                 <div>
                     <label class="block text-gray-300 mb-2">البريد الإلكتروني</label>
                     <input type="email" id="register-email" placeholder="example@gmail.com" class="input-field">
+                    <div id="register-email-error" class="error-message">يرجى إدخال بريد إلكتروني صحيح</div>
                 </div>
                 
                 <div>
                     <label class="block text-gray-300 mb-2">كلمة المرور</label>
                     <input type="password" id="register-password" placeholder="********" class="input-field">
+                    <div id="register-password-error" class="error-message">كلمة المرور يجب أن تكون 6 أحرف على الأقل</div>
                 </div>
                 
                 <div>
                     <label class="block text-gray-300 mb-2">تأكيد كلمة المرور</label>
                     <input type="password" id="register-confirm-password" placeholder="********" class="input-field">
+                    <div id="register-confirm-error" class="error-message">كلمتا المرور غير متطابقتين</div>
                 </div>
                 
                 <button onclick="register()" class="btn-primary w-full py-3">
@@ -532,6 +538,10 @@
                 <a href="#games" class="text-gray-300 hover:text-white transition">الألعاب</a>
                 <a href="#how-to" class="text-gray-300 hover:text-white transition">كيفية الطلب</a>
                 <a href="#reviews" class="text-gray-300 hover:text-white transition">التقييمات</a>
+                <div class="user-welcome" id="user-welcome">
+                    <div class="user-avatar" id="user-avatar">م</div>
+                    <span id="user-name">مرحباً، أحمد</span>
+                </div>
                 <button onclick="openOrderModal('pubg')" class="btn-primary">
                     <i class="fas fa-shopping-cart ml-2"></i>
                     اطلب الآن
@@ -553,6 +563,12 @@
                 <a href="#games" class="block text-gray-300 hover:text-white transition p-3 rounded-lg hover:bg-white/5">الألعاب</a>
                 <a href="#how-to" class="block text-gray-300 hover:text-white transition p-3 rounded-lg hover:bg-white/5">كيفية الطلب</a>
                 <a href="#reviews" class="block text-gray-300 hover:text-white transition p-3 rounded-lg hover:bg-white/5">التقييمات</a>
+                <div class="user-welcome p-3" id="mobile-user-welcome">
+                    <div class="flex items-center gap-3">
+                        <div class="user-avatar" id="mobile-user-avatar">م</div>
+                        <span id="mobile-user-name">مرحباً، أحمد</span>
+                    </div>
+                </div>
                 <button onclick="openOrderModal('pubg')" class="w-full btn-primary p-3 rounded-lg">
                     <i class="fas fa-shopping-cart ml-2"></i>
                     اطلب الآن
@@ -640,22 +656,16 @@
                                 <label class="block text-gray-400 mb-3">اختر اللعبة</label>
                                 <div class="grid grid-cols-3 gap-3">
                                     <button onclick="quickSelect('pubg')" class="p-4 glass rounded-xl hover:border-primary transition text-center quick-game-btn" data-game="pubg">
-                                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-red-600 rounded-lg flex items-center justify-center mx-auto mb-2">
-                                            <i class="fas fa-mobile-alt text-white text-lg"></i>
-                                        </div>
-                                        <div class="text-sm font-medium">ببجي</div>
+                                        <i class="fas fa-mobile-alt text-primary text-xl mb-2 block"></i>
+                                        <div class="text-sm">ببجي</div>
                                     </button>
                                     <button onclick="quickSelect('ff')" class="p-4 glass rounded-xl hover:border-secondary transition text-center quick-game-btn" data-game="ff">
-                                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mx-auto mb-2">
-                                            <i class="fas fa-gem text-white text-lg"></i>
-                                        </div>
-                                        <div class="text-sm font-medium">فري فاير</div>
+                                        <i class="fas fa-gem text-secondary text-xl mb-2 block"></i>
+                                        <div class="text-sm">فري فاير</div>
                                     </button>
                                     <button onclick="quickSelect('fifa')" class="p-4 glass rounded-xl hover:border-accent transition text-center quick-game-btn" data-game="fifa">
-                                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-2">
-                                            <i class="fas fa-futbol text-white text-lg"></i>
-                                        </div>
-                                        <div class="text-sm font-medium">فيفا</div>
+                                        <i class="fas fa-futbol text-accent text-xl mb-2 block"></i>
+                                        <div class="text-sm">فيفا</div>
                                     </button>
                                 </div>
                             </div>
@@ -687,260 +697,132 @@
             
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- PUBG -->
-                <div class="game-card glass rounded-2xl overflow-hidden scroll-fade" style="animation-delay: 0.1s">
-                    <div class="relative h-48">
-                        <img src="data:image/jpeg;base64,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" 
-                             alt="PUBG Mobile" class="game-image">
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3 py-1 bg-gradient-to-r from-yellow-500 to-red-600 rounded-full text-xs font-bold">
-                                الأكثر طلباً
-                            </span>
+                <div class="game-card glass p-8 rounded-2xl scroll-fade" style="animation-delay: 0.1s">
+                    <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-4">ببجي موبايل</h3>
+                    <p class="text-gray-400 text-center mb-6">شحن UC بأسرع وقت وأقل سعر</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between items-center p-4 glass rounded-xl">
+                            <span>60 UC</span>
+                            <span class="font-bold text-primary">45 جنيه</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 glass rounded-xl bg-gradient-to-r from-primary/20 to-transparent">
+                            <span>325 UC</span>
+                            <span class="font-bold text-primary">185 جنيه</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 glass rounded-xl">
+                            <span>660 UC</span>
+                            <span class="font-bold text-primary">370 جنيه</span>
                         </div>
                     </div>
-                    <div class="p-8">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-red-600 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-mobile-alt text-white text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold">ببجي موبايل</h3>
-                                <p class="text-gray-400 text-sm">شحن UC بأسرع وقت وأقل سعر</p>
-                            </div>
-                        </div>
-                        
-                        <div class="price-list mb-8">
-                            <div class="price-item">
-                                <span class="amount">60 UC</span>
-                                <span class="price">45 جنيه</span>
-                            </div>
-                            <div class="price-item popular">
-                                <span class="amount">325 UC</span>
-                                <span class="price">185 جنيه</span>
-                            </div>
-                            <div class="price-item">
-                                <span class="amount">660 UC + 60 مجاناً</span>
-                                <span class="price">370 جنيه</span>
-                            </div>
-                            <div class="price-item">
-                                <span class="amount">1800 UC</span>
-                                <span class="price">850 جنيه</span>
-                            </div>
-                            <div class="price-item">
-                                <span class="amount">3850 UC</span>
-                                <span class="price">1650 جنيه</span>
-                            </div>
-                        </div>
-                        
-                        <button onclick="openOrderModal('pubg')" class="w-full btn-primary py-3">
-                            <i class="fas fa-shopping-cart ml-2"></i>
-                            اختر باقة
-                        </button>
-                    </div>
+                    
+                    <button onclick="openOrderModal('pubg')" class="w-full btn-primary py-3">
+                        <i class="fas fa-shopping-cart ml-2"></i>
+                        اختر باقة
+                    </button>
                 </div>
                 
                 <!-- Free Fire -->
-                <div class="game-card glass rounded-2xl overflow-hidden scroll-fade" style="animation-delay: 0.2s">
-                    <div class="relative h-48">
-                        <img src="data:image/jpeg;base64,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" 
-                             alt="Free Fire" class="game-image">
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3 py-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-xs font-bold">
-                                عروض خاصة
-                            </span>
+                <div class="game-card glass p-8 rounded-2xl scroll-fade" style="animation-delay: 0.2s">
+                    <div class="w-20 h-20 bg-gradient-to-r from-secondary to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-gem text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-4">فري فاير</h3>
+                    <p class="text-gray-400 text-center mb-6">عروض خاصة على الجواهر</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between items-center p-4 glass rounded-xl">
+                            <span>100 Diamond</span>
+                            <span class="font-bold text-secondary">35 جنيه</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 glass rounded-xl bg-gradient-to-r from-secondary/20 to-transparent">
+                            <span>530 Diamonds</span>
+                            <span class="font-bold text-secondary">160 جنيه</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 glass rounded-xl">
+                            <span>1080 Diamonds</span>
+                            <span class="font-bold text-secondary">310 جنيه</span>
                         </div>
                     </div>
-                    <div class="p-8">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-gem text-white text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold">فري فاير</h3>
-                                <p class="text-gray-400 text-sm">عروض خاصة على الجواهر</p>
-                            </div>
-                        </div>
-                        
-                        <div class="price-list mb-8">
-                            <div class="price-item">
-                                <span class="amount">100 Diamond</span>
-                                <span class="price">35 جنيه</span>
-                            </div>
-                            <div class="price-item popular">
-                                <span class="amount">530 Diamonds</span>
-                                <span class="price">160 جنيه</span>
-                            </div>
-                            <div class="price-item">
-                                <span class="amount">1080 Diamonds</span>
-                                <span class="price">310 جنيه</span>
-                            </div>
-                            <div class="price-item">
-                                <span class="amount">2200 Diamonds</span>
-                                <span class="price">600 جنيه</span>
-                            </div>
-                            <div class="price-item">
-                                <span class="amount">5000 Diamonds</span>
-                                <span class="price">1250 جنيه</span>
-                            </div>
-                        </div>
-                        
-                        <button onclick="openOrderModal('ff')" class="w-full btn-primary py-3">
-                            <i class="fas fa-shopping-cart ml-2"></i>
-                            اختر باقة
-                        </button>
-                    </div>
+                    
+                    <button onclick="openOrderModal('ff')" class="w-full btn-primary py-3">
+                        <i class="fas fa-shopping-cart ml-2"></i>
+                        اختر باقة
+                    </button>
                 </div>
                 
                 <!-- FIFA -->
-                <div class="game-card glass rounded-2xl overflow-hidden scroll-fade" style="animation-delay: 0.3s">
-                    <div class="relative h-48">
-                        <img src="data:image/jpeg;base64,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" 
-                             alt="FIFA 25" class="game-image">
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3 py-1 bg-gradient-to-r from-green-500 to-blue-600 rounded-full text-xs font-bold">
-                                جديد
-                            </span>
+                <div class="game-card glass p-8 rounded-2xl scroll-fade" style="animation-delay: 0.3s">
+                    <div class="w-20 h-20 bg-gradient-to-r from-accent to-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-futbol text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-4">فيفا FC 25</h3>
+                    <p class="text-gray-400 text-center mb-6">أرخص سعر كوينز ونقاط</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between items-center p-4 glass rounded-xl">
+                            <span>500 FC Points</span>
+                            <span class="font-bold text-accent">200 جنيه</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 glass rounded-xl bg-gradient-to-r from-accent/20 to-transparent">
+                            <span>1050 FC Points</span>
+                            <span class="font-bold text-accent">380 جنيه</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 glass rounded-xl">
+                            <span>2800 FC Points</span>
+                            <span class="font-bold text-accent">950 جنيه</span>
                         </div>
                     </div>
-                    <div class="p-8">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-600 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-futbol text-white text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold">فيفا FC 25</h3>
-                                <p class="text-gray-400 text-sm">أرخص سعر كوينز ونقاط</p>
-                            </div>
-                        </div>
-                        
-                        <div class="price-list mb-8">
-                            <div class="price-item">
-                                <span class="amount">500 FC Points</span>
-                                <span class="price">200 جنيه</span>
-                            </div>
-                            <div class="price-item popular">
-                                <span class="amount">1050 FC Points</span>
-                                <span class="price">380 جنيه</span>
-                            </div>
-                            <div class="price-item">
-                                <span class="amount">2800 FC Points</span>
-                                <span class="price">950 جنيه</span>
-                            </div>
-                            <div class="price-item">
-                                <span class="amount">12,000 FC Points</span>
-                                <span class="price">3500 جنيه</span>
-                            </div>
-                            <div class="price-item">
-                                <span class="amount">25,000 FC Points</span>
-                                <span class="price">6900 جنيه</span>
-                            </div>
-                        </div>
-                        
-                        <button onclick="openOrderModal('fifa')" class="w-full btn-primary py-3">
-                            <i class="fas fa-shopping-cart ml-2"></i>
-                            اختر باقة
-                        </button>
-                    </div>
+                    
+                    <button onclick="openOrderModal('fifa')" class="w-full btn-primary py-3">
+                        <i class="fas fa-shopping-cart ml-2"></i>
+                        اختر باقة
+                    </button>
                 </div>
             </div>
         </div>
     </section>
     
- <!-- كيفية الطلب -->
-<section id="how-to" class="py-20 px-6 md:px-12 bg-gradient-to-b from-dark/30 to-darker">
-    <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 scroll-fade">
-            <h2 class="section-title text-4xl font-bold inline-block">
-                <span class="gradient-text">📱 كيفية الطلب</span>
-            </h2>
-            <p class="text-xl text-gray-400 mt-4">4 خطوات بسيطة لشحن لعبتك المفضلة</p>
-        </div>
-        
-        <div class="grid md:grid-cols-4 gap-6">
-            <div class="step-card scroll-fade" style="animation-delay: 0.1s">
-                <div class="step-number">
-                    <i class="fas fa-gamepad"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3">اختر اللعبة</h3>
-                <p class="text-gray-400">اختر لعبتك المفضلة من القائمة</p>
-                <div class="mt-4 pt-4 border-t border-gray-700/50">
-                    <div class="flex justify-center space-x-2">
-                        <span class="w-2 h-2 bg-primary rounded-full"></span>
-                        <span class="w-2 h-2 bg-secondary rounded-full"></span>
-                        <span class="w-2 h-2 bg-accent rounded-full"></span>
-                    </div>
-                </div>
+    <!-- كيفية الطلب -->
+    <section id="how-to" class="py-20 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 scroll-fade">
+                <h2 class="section-title text-4xl font-bold inline-block">
+                    <span class="gradient-text">📱 كيفية الطلب</span>
+                </h2>
+                <p class="text-xl text-gray-400 mt-4">4 خطوات بسيطة لشحن لعبتك المفضلة</p>
             </div>
             
-            <div class="step-card scroll-fade" style="animation-delay: 0.2s">
-                <div class="step-number">
-                    <i class="fas fa-id-card"></i>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="step-card scroll-fade" style="animation-delay: 0.1s">
+                    <div class="step-number">1</div>
+                    <h3 class="text-xl font-bold mb-3">اختر اللعبة</h3>
+                    <p class="text-gray-400">اختر لعبتك المفضلة من القائمة</p>
                 </div>
-                <h3 class="text-xl font-bold mb-3">ادخل الآيدي</h3>
-                <p class="text-gray-400">أدخل رقم الآيدي الخاص بك</p>
-                <div class="mt-4 pt-4 border-t border-gray-700/50">
-                    <div class="text-center">
-                        <span class="text-sm text-gray-500">مثال: 518834221</span>
-                    </div>
+                
+                <div class="step-card scroll-fade" style="animation-delay: 0.2s">
+                    <div class="step-number">2</div>
+                    <h3 class="text-xl font-bold mb-3">ادخل الآيدي</h3>
+                    <p class="text-gray-400">أدخل رقم الآيدي الخاص بك</p>
                 </div>
-            </div>
-            
-            <div class="step-card scroll-fade" style="animation-delay: 0.3s">
-                <div class="step-number">
-                    <i class="fas fa-box-open"></i>
+                
+                <div class="step-card scroll-fade" style="animation-delay: 0.3s">
+                    <div class="step-number">3</div>
+                    <h3 class="text-xl font-bold mb-3">اختر الباقة</h3>
+                    <p class="text-gray-400">اختر الباقة المناسبة من العروض</p>
                 </div>
-                <h3 class="text-xl font-bold mb-3">اختر الباقة</h3>
-                <p class="text-gray-400">اختر الباقة المناسبة من العروض</p>
-                <div class="mt-4 pt-4 border-t border-gray-700/50">
-                    <div class="flex items-center justify-center text-primary">
-                        <i class="fas fa-tag ml-1"></i>
-                        <span class="text-sm">خصومات تصل لـ 25%</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="step-card scroll-fade" style="animation-delay: 0.4s">
-                <div class="step-number">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3">ادفع واستلم</h3>
-                <p class="text-gray-400">ادفع واستلم شحنك خلال 5 دقائق</p>
-                <div class="mt-4 pt-4 border-t border-gray-700/50">
-                    <div class="flex items-center justify-center text-green-400">
-                        <i class="fab fa-whatsapp ml-1"></i>
-                        <span class="text-sm">تأكيد فوري عبر واتساب</span>
-                    </div>
+                
+                <div class="step-card scroll-fade" style="animation-delay: 0.4s">
+                    <div class="step-number">4</div>
+                    <h3 class="text-xl font-bold mb-3">ادفع واستلم</h3>
+                    <p class="text-gray-400">ادفع واستلم شحنك خلال 5 دقائق</p>
                 </div>
             </div>
         </div>
-        
-        <!-- ميزات إضافية -->
-        <div class="grid md:grid-cols-3 gap-6 mt-16 scroll-fade">
-            <div class="feature-card glass p-6 rounded-xl">
-                <div class="w-12 h-12 bg-gradient-to-r from-primary to-purple-600 rounded-xl flex items-center justify-center mb-4">
-                    <i class="fas fa-shield-alt text-white"></i>
-                </div>
-                <h4 class="text-lg font-bold mb-2">أمان تام</h4>
-                <p class="text-gray-400 text-sm">جميع عمليات الدفع آمنة ومشفرة</p>
-            </div>
-            
-            <div class="feature-card glass p-6 rounded-xl">
-                <div class="w-12 h-12 bg-gradient-to-r from-secondary to-green-600 rounded-xl flex items-center justify-center mb-4">
-                    <i class="fas fa-headset text-white"></i>
-                </div>
-                <h4 class="text-lg font-bold mb-2">دعم فني 24/7</h4>
-                <p class="text-gray-400 text-sm">فريق دعم فني متاح على مدار الساعة</p>
-            </div>
-            
-            <div class="feature-card glass p-6 rounded-xl">
-                <div class="w-12 h-12 bg-gradient-to-r from-accent to-yellow-600 rounded-xl flex items-center justify-center mb-4">
-                    <i class="fas fa-badge-check text-white"></i>
-                </div>
-                <h4 class="text-lg font-bold mb-2">ضمان كامل</h4>
-                <p class="text-gray-400 text-sm">ضمان استرجاع الأموال في حال حدوث مشكلة</p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
     
     <!-- نافذة الطلب -->
     <div id="order-modal">
@@ -1144,8 +1026,6 @@
                 </div>
             </div>
         </div>
-
-        
     </section>
     
     <!-- الفوتر -->
@@ -1318,8 +1198,7 @@
                     { name: "100 Diamond", price: "35 جنيه", popular: false },
                     { name: "530 Diamonds", price: "160 جنيه", popular: true },
                     { name: "1080 Diamonds (الأكثر طلباً)", price: "310 جنيه", popular: true },
-                    { name: "2200 Diamonds", price: "600 جنيه", popular: false },
-                    { name: "5000 Diamonds", price: "1250 جنيه", popular: false }
+                    { name: "2200 Diamonds", price: "600 جنيه", popular: false }
                 ]
             },
             fifa: {
@@ -1328,8 +1207,7 @@
                     { name: "500 FC Points", price: "200 جنيه", popular: false },
                     { name: "1050 FC Points", price: "380 جنيه", popular: true },
                     { name: "2800 FC Points", price: "950 جنيه", popular: false },
-                    { name: "12,000 FC Points (VIP)", price: "3500 جنيه", popular: true },
-                    { name: "25,000 FC Points (Premium)", price: "6900 جنيه", popular: false }
+                    { name: "12,000 FC Points (VIP)", price: "3500 جنيه", popular: true }
                 ]
             }
         };
@@ -1341,12 +1219,7 @@
         // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             // التحقق من حالة الدخول
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            const guestMode = localStorage.getItem('guestMode');
-            
-            if (isLoggedIn || guestMode) {
-                hideLoginScreen();
-            }
+            checkLoginStatus();
             
             // إعداد شريط التقدم
             setupProgressBar();
@@ -1363,40 +1236,252 @@
             // إعداد السحب والإفلات للصور
             setupDragAndDrop();
             
+            // إعداد التحقق من صحة الحقول
+            setupFormValidation();
+            
             // تحديث تاريخ التقييمات
             updateReviewDates();
+            
+            // إعداد أزرار الألعاب السريعة
+            setupQuickGameButtons();
+            
+            // تحميل بيانات المستخدمين
+            loadUsers();
         });
+        
+        // ========== نظام التسجيل والتحقق ==========
+        
+        // تحميل بيانات المستخدمين
+        function loadUsers() {
+            if (!localStorage.getItem('users')) {
+                // بيانات افتراضية للمستخدمين
+                const defaultUsers = [
+                    {
+                        name: "أحمد محمد",
+                        email: "ahmed@example.com",
+                        password: btoa("123456"), // تشفير بسيط
+                        createdAt: new Date().toISOString(),
+                        orders: []
+                    }
+                ];
+                localStorage.setItem('users', JSON.stringify(defaultUsers));
+            }
+        }
+        
+        // التحقق من حالة الدخول
+        function checkLoginStatus() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const guestMode = localStorage.getItem('guestMode');
+            const userEmail = localStorage.getItem('userEmail');
+            
+            if (isLoggedIn || guestMode) {
+                hideLoginScreen();
+                updateUserInterface();
+            }
+            
+            if (userEmail) {
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const user = users.find(u => u.email === userEmail);
+                if (user) {
+                    document.getElementById('user-name').textContent = `مرحباً، ${user.name.split(' ')[0]}`;
+                    document.getElementById('user-avatar').textContent = user.name.charAt(0);
+                    document.getElementById('mobile-user-name').textContent = `مرحباً، ${user.name.split(' ')[0]}`;
+                    document.getElementById('mobile-user-avatar').textContent = user.name.charAt(0);
+                }
+            }
+        }
+        
+        // إعداد التحقق من صحة الحقول
+        function setupFormValidation() {
+            // الحقول الرئيسية للتسجيل
+            const registerFields = ['register-name', 'register-email', 'register-password', 'register-confirm-password'];
+            
+            registerFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('input', function() {
+                        validateField(this);
+                    });
+                    
+                    field.addEventListener('blur', function() {
+                        validateField(this);
+                    });
+                }
+            });
+            
+            // حقول تسجيل الدخول
+            const loginFields = ['login-email', 'login-password'];
+            loginFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('input', function() {
+                        clearFieldError(this);
+                    });
+                }
+            });
+        }
+        
+        function validateField(field) {
+            const fieldId = field.id;
+            const value = field.value.trim();
+            let isValid = true;
+            let errorMessage = '';
+            
+            clearFieldError(field);
+            
+            switch(fieldId) {
+                case 'register-name':
+                    if (value.length < 3) {
+                        isValid = false;
+                        errorMessage = 'الاسم يجب أن يكون 3 أحرف على الأقل';
+                    }
+                    break;
+                    
+                case 'register-email':
+                case 'login-email':
+                    if (!value) {
+                        isValid = false;
+                        errorMessage = 'البريد الإلكتروني مطلوب';
+                    } else if (!validateEmail(value)) {
+                        isValid = false;
+                        errorMessage = 'صيغة البريد الإلكتروني غير صحيحة';
+                    }
+                    break;
+                    
+                case 'register-password':
+                    if (value.length < 6) {
+                        isValid = false;
+                        errorMessage = 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+                    }
+                    break;
+                    
+                case 'register-confirm-password':
+                    const password = document.getElementById('register-password').value.trim();
+                    if (value !== password) {
+                        isValid = false;
+                        errorMessage = 'كلمتا المرور غير متطابقتين';
+                    }
+                    break;
+                    
+                case 'login-password':
+                    if (!value) {
+                        isValid = false;
+                        errorMessage = 'كلمة المرور مطلوبة';
+                    }
+                    break;
+            }
+            
+            if (!isValid && value) {
+                showFieldError(field, errorMessage);
+            } else if (isValid && value) {
+                showFieldSuccess(field);
+            }
+            
+            return isValid;
+        }
+        
+        function showFieldError(field, message) {
+            field.classList.remove('input-success');
+            field.classList.add('input-error');
+            
+            const errorElement = document.getElementById(field.id + '-error');
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+            }
+        }
+        
+        function showFieldSuccess(field) {
+            field.classList.remove('input-error');
+            field.classList.add('input-success');
+            
+            const errorElement = document.getElementById(field.id + '-error');
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
+        }
+        
+        function clearFieldError(field) {
+            field.classList.remove('input-error', 'input-success');
+            
+            const errorElement = document.getElementById(field.id + '-error');
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
+        }
+        
+        // التحقق من صحة الإيميل
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
         
         // تسجيل الدخول
         function login() {
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value.trim();
             
-            if (!email || !password) {
-                showNotification('يرجى ملء جميع الحقول', 'error');
+            let isValid = true;
+            
+            // التحقق من البريد الإلكتروني
+            if (!email) {
+                showFieldError(document.getElementById('login-email'), 'البريد الإلكتروني مطلوب');
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                showFieldError(document.getElementById('login-email'), 'صيغة البريد الإلكتروني غير صحيحة');
+                isValid = false;
+            }
+            
+            // التحقق من كلمة المرور
+            if (!password) {
+                showFieldError(document.getElementById('login-password'), 'كلمة المرور مطلوبة');
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                showNotification('يرجى تصحيح الأخطاء في النموذج', 'error');
                 return;
             }
             
-            if (!validateEmail(email)) {
-                showNotification('يرجى إدخال بريد إلكتروني صحيح', 'error');
+            // البحث عن المستخدم
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.email === email);
+            
+            if (!user) {
+                showFieldError(document.getElementById('login-email'), 'البريد الإلكتروني غير مسجل');
+                showNotification('البريد الإلكتروني أو كلمة المرور غير صحيحة', 'error');
                 return;
             }
             
-            // محاكاة تسجيل الدخول
+            // التحقق من كلمة المرور
+            if (btoa(password) !== user.password) {
+                showFieldError(document.getElementById('login-password'), 'كلمة المرور غير صحيحة');
+                showNotification('البريد الإلكتروني أو كلمة المرور غير صحيحة', 'error');
+                return;
+            }
+            
+            // تسجيل الدخول الناجح
             showNotification('جاري تسجيل الدخول...', 'info');
             
             setTimeout(() => {
                 localStorage.setItem('isLoggedIn', 'true');
                 localStorage.setItem('userEmail', email);
+                localStorage.setItem('userName', user.name);
+                
                 hideLoginScreen();
-                showNotification('تم تسجيل الدخول بنجاح!', 'success');
-            }, 1500);
+                updateUserInterface();
+                showNotification(`مرحباً بعودتك ${user.name.split(' ')[0]}!`, 'success');
+                
+                // إعادة تعيين النموذج
+                resetLoginForm();
+            }, 1000);
         }
         
         function skipLogin() {
             localStorage.setItem('guestMode', 'true');
             hideLoginScreen();
             showNotification('مرحباً بك كضيف', 'info');
+            updateUserInterface();
         }
         
         function hideLoginScreen() {
@@ -1407,10 +1492,90 @@
             }, 500);
         }
         
+        // إنشاء حساب جديد
+        function register() {
+            const name = document.getElementById('register-name').value.trim();
+            const email = document.getElementById('register-email').value.trim();
+            const password = document.getElementById('register-password').value.trim();
+            const confirmPassword = document.getElementById('register-confirm-password').value.trim();
+            
+            let isValid = true;
+            
+            // التحقق من جميع الحقول
+            const fields = [
+                { id: 'register-name', value: name, minLength: 3, message: 'الاسم يجب أن يكون 3 أحرف على الأقل' },
+                { id: 'register-email', value: email, isEmail: true, message: 'صيغة البريد الإلكتروني غير صحيحة' },
+                { id: 'register-password', value: password, minLength: 6, message: 'كلمة المرور يجب أن تكون 6 أحرف على الأقل' },
+                { id: 'register-confirm-password', value: confirmPassword, compareWith: password, message: 'كلمتا المرور غير متطابقتين' }
+            ];
+            
+            fields.forEach(field => {
+                const fieldElement = document.getElementById(field.id);
+                
+                if (!field.value) {
+                    showFieldError(fieldElement, 'هذا الحقل مطلوب');
+                    isValid = false;
+                } else if (field.minLength && field.value.length < field.minLength) {
+                    showFieldError(fieldElement, field.message);
+                    isValid = false;
+                } else if (field.isEmail && !validateEmail(field.value)) {
+                    showFieldError(fieldElement, field.message);
+                    isValid = false;
+                } else if (field.compareWith && field.value !== field.compareWith) {
+                    showFieldError(fieldElement, field.message);
+                    isValid = false;
+                } else {
+                    showFieldSuccess(fieldElement);
+                }
+            });
+            
+            if (!isValid) {
+                showNotification('يرجى تصحيح الأخطاء في النموذج', 'error');
+                return;
+            }
+            
+            // التحقق إذا كان الحساب موجود بالفعل
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const userExists = users.some(user => user.email === email);
+            
+            if (userExists) {
+                showNotification('هذا البريد الإلكتروني مسجل بالفعل', 'error');
+                showFieldError(document.getElementById('register-email'), 'هذا البريد الإلكتروني مسجل بالفعل');
+                return;
+            }
+            
+            showNotification('جاري إنشاء الحساب...', 'info');
+            
+            // إنشاء المستخدم الجديد
+            setTimeout(() => {
+                const newUser = {
+                    name: name,
+                    email: email,
+                    password: btoa(password),
+                    createdAt: new Date().toISOString(),
+                    orders: []
+                };
+                
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                // تسجيل الدخول تلقائياً
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('userName', name);
+                
+                closeRegister();
+                hideLoginScreen();
+                updateUserInterface();
+                showNotification(`تم إنشاء الحساب بنجاح! مرحباً ${name.split(' ')[0]}`, 'success');
+            }, 1500);
+        }
+        
         function logout() {
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('guestMode');
             localStorage.removeItem('userEmail');
+            localStorage.removeItem('userName');
             
             const loginScreen = document.getElementById('login-screen');
             loginScreen.style.display = 'flex';
@@ -1418,11 +1583,33 @@
                 loginScreen.style.opacity = '1';
             }, 10);
             
+            updateUserInterface();
             showNotification('تم تسجيل الخروج', 'info');
             scrollToTop();
+            
+            // إعادة تعيين النموذج
+            resetLoginForm();
+        }
+        
+        function resetLoginForm() {
+            document.getElementById('login-email').value = '';
+            document.getElementById('login-password').value = '';
+            clearFieldError(document.getElementById('login-email'));
+            clearFieldError(document.getElementById('login-password'));
         }
         
         function showRegister() {
+            // إعادة تعيين نموذج التسجيل
+            document.getElementById('register-name').value = '';
+            document.getElementById('register-email').value = '';
+            document.getElementById('register-password').value = '';
+            document.getElementById('register-confirm-password').value = '';
+            
+            // إخفاء رسائل الخطأ
+            ['register-name', 'register-email', 'register-password', 'register-confirm-password'].forEach(id => {
+                clearFieldError(document.getElementById(id));
+            });
+            
             document.getElementById('register-modal').style.display = 'flex';
         }
         
@@ -1430,50 +1617,44 @@
             document.getElementById('register-modal').style.display = 'none';
         }
         
-        function register() {
-            const name = document.getElementById('register-name').value.trim();
-            const email = document.getElementById('register-email').value.trim();
-            const password = document.getElementById('register-password').value.trim();
-            const confirmPassword = document.getElementById('register-confirm-password').value.trim();
+        // تحديث واجهة المستخدم بعد تسجيل الدخول
+        function updateUserInterface() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const guestMode = localStorage.getItem('guestMode');
+            const userName = localStorage.getItem('userName');
+            const userEmail = localStorage.getItem('userEmail');
             
-            if (!name || !email || !password || !confirmPassword) {
-                showNotification('يرجى ملء جميع الحقول', 'error');
-                return;
-            }
+            const userWelcome = document.getElementById('user-welcome');
+            const mobileUserWelcome = document.getElementById('mobile-user-welcome');
             
-            if (!validateEmail(email)) {
-                showNotification('يرجى إدخال بريد إلكتروني صحيح', 'error');
-                return;
-            }
-            
-            if (password !== confirmPassword) {
-                showNotification('كلمتا المرور غير متطابقتين', 'error');
-                return;
-            }
-            
-            if (password.length < 6) {
-                showNotification('كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
-                return;
-            }
-            
-            showNotification('جاري إنشاء الحساب...', 'info');
-            
-            setTimeout(() => {
-                localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('userEmail', email);
-                localStorage.setItem('userName', name);
+            if (isLoggedIn && userName) {
+                // تحديث الاسم والصورة
+                const firstLetter = userName.charAt(0);
+                document.getElementById('user-avatar').textContent = firstLetter;
+                document.getElementById('mobile-user-avatar').textContent = firstLetter;
+                document.getElementById('user-name').textContent = `مرحباً، ${userName.split(' ')[0]}`;
+                document.getElementById('mobile-user-name').textContent = `مرحباً، ${userName.split(' ')[0]}`;
                 
-                closeRegister();
-                hideLoginScreen();
-                showNotification('تم إنشاء الحساب بنجاح!', 'success');
-            }, 1500);
+                // إظهار رسالة الترحيب
+                userWelcome.style.display = 'flex';
+                mobileUserWelcome.style.display = 'block';
+            } else if (guestMode) {
+                // وضع الضيف
+                document.getElementById('user-name').textContent = 'مرحباً، ضيف';
+                document.getElementById('mobile-user-name').textContent = 'مرحباً، ضيف';
+                document.getElementById('user-avatar').textContent = 'ض';
+                document.getElementById('mobile-user-avatar').textContent = 'ض';
+                
+                userWelcome.style.display = 'flex';
+                mobileUserWelcome.style.display = 'block';
+            } else {
+                // إخفاء رسالة الترحيب
+                userWelcome.style.display = 'none';
+                mobileUserWelcome.style.display = 'none';
+            }
         }
         
-        // التحقق من صحة الإيميل
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
+        // ========== الوظائف المساعدة ==========
         
         // شريط التقدم
         function setupProgressBar() {
@@ -1555,38 +1736,39 @@
         // السحب والإفلات
         function setupDragAndDrop() {
             const uploadArea = document.getElementById('upload-area');
-            
-            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                uploadArea.addEventListener(eventName, preventDefaults, false);
-            });
-            
-            function preventDefaults(e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-            
-            ['dragenter', 'dragover'].forEach(eventName => {
-                uploadArea.addEventListener(eventName, highlight, false);
-            });
-            
-            ['dragleave', 'drop'].forEach(eventName => {
-                uploadArea.addEventListener(eventName, unhighlight, false);
-            });
-            
-            function highlight() {
-                uploadArea.classList.add('border-primary');
-            }
-            
-            function unhighlight() {
-                uploadArea.classList.remove('border-primary');
-            }
-            
-            uploadArea.addEventListener('drop', handleDrop, false);
-            
-            function handleDrop(e) {
-                const dt = e.dataTransfer;
-                const files = dt.files;
-                handleFiles(files);
+            if (uploadArea) {
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    uploadArea.addEventListener(eventName, preventDefaults, false);
+                });
+                
+                function preventDefaults(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    uploadArea.addEventListener(eventName, highlight, false);
+                });
+                
+                ['dragleave', 'drop'].forEach(eventName => {
+                    uploadArea.addEventListener(eventName, unhighlight, false);
+                });
+                
+                function highlight() {
+                    uploadArea.classList.add('border-primary');
+                }
+                
+                function unhighlight() {
+                    uploadArea.classList.remove('border-primary');
+                }
+                
+                uploadArea.addEventListener('drop', handleDrop, false);
+                
+                function handleDrop(e) {
+                    const dt = e.dataTransfer;
+                    const files = dt.files;
+                    handleFiles(files);
+                }
             }
         }
         
@@ -1596,6 +1778,7 @@
                 if (file.type.startsWith('image/')) {
                     uploadedFile = file;
                     showFilePreview(file);
+                    showNotification('تم رفع الصورة بنجاح', 'success');
                 } else {
                     showNotification('يرجى رفع صورة فقط', 'error');
                 }
@@ -1616,24 +1799,52 @@
             uploadedFile = null;
             document.getElementById('payment-proof').value = '';
             document.getElementById('file-preview').classList.add('hidden');
+            showNotification('تم إزالة الملف', 'info');
         }
         
         // تحديث تواريخ التقييمات
         function updateReviewDates() {
             const now = new Date();
-            const yesterday = new Date(now);
-            yesterday.setDate(yesterday.getDate() - 1);
             
             const reviewDates = document.querySelectorAll('.review-card .text-gray-500');
-            if (reviewDates.length >= 2) {
-                // تحديث التاريخ الثاني ليكون "أمس"
-                reviewDates[1].textContent = 'أمس';
+            if (reviewDates.length >= 3) {
+                // تحديث التواريخ ديناميكياً
+                const dates = [
+                    formatDate(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 90)),
+                    formatDate(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1)),
+                    formatDate(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 2))
+                ];
                 
-                // تحديث التاريخ الثالث ليكون "منذ يومين"
-                const twoDaysAgo = new Date(now);
-                twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
-                reviewDates[2].textContent = 'منذ يومين';
+                reviewDates.forEach((dateEl, index) => {
+                    dateEl.textContent = dates[index];
+                });
             }
+        }
+        
+        function formatDate(date) {
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            return date.toLocaleDateString('ar-EG', options);
+        }
+        
+        // إعداد أزرار الألعاب السريعة
+        function setupQuickGameButtons() {
+            document.querySelectorAll('.quick-game-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const gameId = this.getAttribute('data-game');
+                    currentGame = gameId;
+                    
+                    // تحديث التحديد المرئي
+                    document.querySelectorAll('.quick-game-btn').forEach(b => {
+                        b.classList.remove('border-primary', 'border-secondary', 'border-accent');
+                    });
+                    
+                    let borderColor = 'border-primary';
+                    if (gameId === 'ff') borderColor = 'border-secondary';
+                    if (gameId === 'fifa') borderColor = 'border-accent';
+                    
+                    this.classList.add(borderColor);
+                });
+            });
         }
         
         // نافذة الطلب
@@ -1663,7 +1874,7 @@
                 packageElement.onclick = () => selectPackage(pkg, packageElement);
                 
                 const isPopular = pkg.popular ? `
-                    <span class="px-3 py-1 bg-gradient-to-r from-primary to-secondary rounded-lg text-xs text-white font-bold">
+                    <span class="px-2 py-1 bg-gradient-to-r from-primary to-secondary rounded-lg text-xs text-white">
                         ${index === 1 ? 'الأكثر طلباً' : 'عرض خاص'}
                     </span>
                 ` : '';
@@ -1740,7 +1951,6 @@
                 return;
             }
             
-            // فتح نافذة الطلب مع اللعبة المختارة
             openOrderModal(currentGame);
         }
         
@@ -1763,14 +1973,45 @@
                 return;
             }
             
+            // حفظ الطلب
+            saveOrder(playerId);
+            
+            // إرسال رسالة واتساب
             sendWhatsAppMessage(playerId, selectedPackage.name + ' - ' + selectedPackage.price);
+            
             closeOrderModal();
+        }
+        
+        // حفظ الطلب
+        function saveOrder(playerId) {
+            const userEmail = localStorage.getItem('userEmail');
+            if (userEmail) {
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const userIndex = users.findIndex(u => u.email === userEmail);
+                
+                if (userIndex !== -1) {
+                    const order = {
+                        game: currentGame,
+                        package: selectedPackage.name,
+                        price: selectedPackage.price,
+                        playerId: playerId,
+                        date: new Date().toISOString(),
+                        status: 'pending'
+                    };
+                    
+                    users[userIndex].orders.push(order);
+                    localStorage.setItem('users', JSON.stringify(users));
+                }
+            }
         }
         
         // إرسال رسالة واتساب
         function sendWhatsAppMessage(playerId, packageInfo) {
             const gameTitle = currentGame ? gamesData[currentGame].title : 'لعبة';
+            const userName = localStorage.getItem('userName') || 'عميل';
+            
             const message = `🎮 *طلب شحن جديد*\n\n`
+                + `*اسم العميل:* ${userName}\n`
                 + `*اللعبة:* ${gameTitle}\n`
                 + `*الباقة:* ${packageInfo}\n`
                 + `*رقم الآيدي:* ${playerId}\n\n`
@@ -1781,17 +2022,6 @@
             window.open(`https://wa.me/201207771639?text=${encodedMessage}`, '_blank');
             
             showNotification('جاري تحويلك إلى واتساب لإتمام الطلب...', 'success');
-            
-            // تسجيل الطلب في localStorage (محاكاة)
-            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-            orders.push({
-                game: gameTitle,
-                package: packageInfo,
-                playerId: playerId,
-                date: new Date().toISOString(),
-                status: 'pending'
-            });
-            localStorage.setItem('orders', JSON.stringify(orders));
         }
         
         function openWhatsApp() {
@@ -1820,6 +2050,9 @@
             } else if (type === 'success') {
                 bgColor = 'from-green-500 to-green-600';
                 icon = 'fa-check-circle';
+            } else if (type === 'warning') {
+                bgColor = 'from-yellow-500 to-yellow-600';
+                icon = 'fa-exclamation-triangle';
             }
             
             notification.innerHTML = `
@@ -1840,25 +2073,6 @@
                 }, 300);
             }, 3000);
         }
-        
-        // تحديث اللعبة المختارة في الطلب السريع
-        document.querySelectorAll('.quick-game-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const gameId = this.getAttribute('data-game');
-                currentGame = gameId;
-                
-                // تحديث التحديد المرئي
-                document.querySelectorAll('.quick-game-btn').forEach(b => {
-                    b.classList.remove('border-primary', 'border-secondary', 'border-accent');
-                });
-                
-                let borderColor = 'border-primary';
-                if (gameId === 'ff') borderColor = 'border-secondary';
-                if (gameId === 'fifa') borderColor = 'border-accent';
-                
-                this.classList.add(borderColor);
-            });
-        });
     </script>
 </body>
 </html>
