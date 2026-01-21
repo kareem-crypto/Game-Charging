@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شحن الالعاب | أرخص شحن ألعاب في مصر</title>
+    <title>شحن الألعاب | أرخص شحن ألعاب في مصر</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -483,6 +483,19 @@
             color: #f59e0b;
             border: 1px solid rgba(245, 158, 11, 0.3);
         }
+        
+        /* أحجام الألعاب */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 640px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -496,7 +509,7 @@
                 <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <i class="fas fa-bolt text-white text-2xl"></i>
                 </div>
-                <h1 class="text-3xl font-bold gradient-text mb-2">شحن الالعاب</h1>
+                <h1 class="text-3xl font-bold gradient-text mb-2">شحن الألعاب</h1>
                 <p class="text-gray-400">أرخص وأسرع شحن ألعاب في مصر</p>
             </div>
             
@@ -586,7 +599,7 @@
                     <i class="fas fa-bolt text-white"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold gradient-text">شحن الالعاب</h1>
+                    <h1 class="text-xl font-bold gradient-text">شحن الألعاب</h1>
                     <p class="text-xs text-gray-400 hidden md:block">أرخص شحن ألعاب</p>
                 </div>
             </div>
@@ -762,7 +775,7 @@
             </div>
             
             <!-- قائمة الألعاب -->
-            <div id="games-container" class="grid md:grid-cols-3 gap-8">
+            <div id="games-container" class="games-grid">
                 <!-- سيتم ملؤها بالجافاسكريبت -->
             </div>
         </div>
@@ -1019,7 +1032,7 @@
                         <div class="w-12 h-12 gradient-bg rounded-2xl flex items-center justify-center">
                             <i class="fas fa-bolt text-white"></i>
                         </div>
-                        <h3 class="text-xl font-bold gradient-text">شحن ببجي</h3>
+                        <h3 class="text-xl font-bold gradient-text">شحن الألعاب</h3>
                     </div>
                     <p class="text-gray-400">
                         أرخص وأسرع شحن ألعاب في مصر. نوفر لكم أفضل الأسعار مع ضمان الجودة والسرعة.
@@ -1146,7 +1159,7 @@
             </div>
             
             <div class="pt-8 border-t border-gray-800/50 text-center">
-                <p class="text-gray-500">© 2024 شحن الالعاب. جميع الحقوق محفوظة.</p>
+                <p class="text-gray-500">© 2024 شحن الألعاب. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
@@ -1162,14 +1175,14 @@
     </button>
 
     <script>
-        // بيانات 9 ألعاب كاملة
+        // ========== بيانات الألعاب الكاملة ==========
         const gamesData = {
             pubg: {
                 id: 'pubg',
                 title: "ببجي موبايل - شحن UC",
                 category: "mobile",
                 icon: "fas fa-mobile-alt",
-                color: "from-primary to-purple-600",
+                color: "from-purple-500 to-indigo-600",
                 status: "available",
                 packages: [
                     { name: "60 UC", price: "45 جنيه", popular: false },
@@ -1184,7 +1197,7 @@
                 title: "فري فاير - شحن الجواهر",
                 category: "mobile",
                 icon: "fas fa-gem",
-                color: "from-secondary to-green-500",
+                color: "from-green-500 to-emerald-600",
                 status: "available",
                 packages: [
                     { name: "100 Diamond", price: "35 جنيه", popular: false },
@@ -1198,7 +1211,7 @@
                 title: "فيفا FC 25 - شحن النقاط",
                 category: "pc",
                 icon: "fas fa-futbol",
-                color: "from-accent to-yellow-500",
+                color: "from-yellow-500 to-orange-600",
                 status: "available",
                 packages: [
                     { name: "500 FC Points", price: "200 جنيه", popular: false },
@@ -1240,7 +1253,7 @@
                 title: "روبلكس - شحن Robux",
                 category: "pc",
                 icon: "fas fa-cube",
-                color: "from-green-600 to-emerald-500",
+                color: "from-green-600 to-teal-500",
                 status: "available",
                 packages: [
                     { name: "80 Robux", price: "40 جنيه", popular: false },
@@ -1254,7 +1267,7 @@
                 title: "جينشن إمباكت - شحن Genesis",
                 category: "pc",
                 icon: "fas fa-wind",
-                color: "from-purple-500 to-indigo-600",
+                color: "from-indigo-500 to-purple-600",
                 status: "soon",
                 packages: [
                     { name: "60 Genesis Crystals", price: "50 جنيه", popular: false },
@@ -1296,13 +1309,27 @@
                 title: "كلاش أوف كلانس - شحن Gems",
                 category: "mobile",
                 icon: "fas fa-gem",
-                color: "from-yellow-500 to-orange-600",
+                color: "from-yellow-600 to-amber-500",
                 status: "available",
                 packages: [
                     { name: "500 Gems", price: "100 جنيه", popular: false },
                     { name: "1,200 Gems", price: "220 جنيه", popular: true },
                     { name: "2,500 Gems", price: "420 جنيه", popular: false },
                     { name: "6,500 Gems", price: "950 جنيه", popular: true }
+                ]
+            },
+            apex: {
+                id: 'apex',
+                title: "ابيكس ليجيندز - شحن Coins",
+                category: "pc",
+                icon: "fas fa-skull-crossbones",
+                color: "from-orange-500 to-red-600",
+                status: "available",
+                packages: [
+                    { name: "500 Coins", price: "180 جنيه", popular: false },
+                    { name: "1,000 Coins", price: "320 جنيه", popular: true },
+                    { name: "2,150 Coins", price: "600 جنيه", popular: false },
+                    { name: "4,350 Coins", price: "1100 جنيه", popular: true }
                 ]
             }
         };
@@ -1312,7 +1339,7 @@
         let uploadedFile = null;
         let currentFilter = 'all';
         
-        // تهيئة الصفحة
+        // ========== تهيئة الصفحة ==========
         document.addEventListener('DOMContentLoaded', function() {
             // التحقق من حالة الدخول
             checkLoginStatus();
@@ -1344,17 +1371,12 @@
             // عرض الألعاب
             displayGames();
             displayQuickGames();
-            
-            // إعداد التصنيفات
-            setupCategories();
         });
         
         // ========== نظام التسجيل والتحقق ==========
         
-        // تحميل بيانات المستخدمين
         function loadUsers() {
             if (!localStorage.getItem('users')) {
-                // بيانات افتراضية للمستخدمين
                 const defaultUsers = [
                     {
                         name: "أحمد محمد",
@@ -1368,7 +1390,6 @@
             }
         }
         
-        // التحقق من حالة الدخول
         function checkLoginStatus() {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
             const guestMode = localStorage.getItem('guestMode');
@@ -1391,9 +1412,7 @@
             }
         }
         
-        // إعداد التحقق من صحة الحقول
         function setupFormValidation() {
-            // الحقول الرئيسية للتسجيل
             const registerFields = ['register-name', 'register-email', 'register-password', 'register-confirm-password'];
             
             registerFields.forEach(fieldId => {
@@ -1409,7 +1428,6 @@
                 }
             });
             
-            // حقول تسجيل الدخول
             const loginFields = ['login-email', 'login-password'];
             loginFields.forEach(fieldId => {
                 const field = document.getElementById(fieldId);
@@ -1510,20 +1528,17 @@
             }
         }
         
-        // التحقق من صحة الإيميل
         function validateEmail(email) {
             const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
         }
         
-        // تسجيل الدخول
         function login() {
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value.trim();
             
             let isValid = true;
             
-            // التحقق من البريد الإلكتروني
             if (!email) {
                 showFieldError(document.getElementById('login-email'), 'البريد الإلكتروني مطلوب');
                 isValid = false;
@@ -1532,7 +1547,6 @@
                 isValid = false;
             }
             
-            // التحقق من كلمة المرور
             if (!password) {
                 showFieldError(document.getElementById('login-password'), 'كلمة المرور مطلوبة');
                 isValid = false;
@@ -1543,7 +1557,6 @@
                 return;
             }
             
-            // البحث عن المستخدم
             const users = JSON.parse(localStorage.getItem('users') || '[]');
             const user = users.find(u => u.email === email);
             
@@ -1553,14 +1566,12 @@
                 return;
             }
             
-            // التحقق من كلمة المرور
             if (btoa(password) !== user.password) {
                 showFieldError(document.getElementById('login-password'), 'كلمة المرور غير صحيحة');
                 showNotification('البريد الإلكتروني أو كلمة المرور غير صحيحة', 'error');
                 return;
             }
             
-            // تسجيل الدخول الناجح
             showNotification('جاري تسجيل الدخول...', 'info');
             
             setTimeout(() => {
@@ -1572,7 +1583,6 @@
                 updateUserInterface();
                 showNotification(`مرحباً بعودتك ${user.name.split(' ')[0]}!`, 'success');
                 
-                // إعادة تعيين النموذج
                 resetLoginForm();
             }, 1000);
         }
@@ -1592,7 +1602,6 @@
             }, 500);
         }
         
-        // إنشاء حساب جديد
         function register() {
             const name = document.getElementById('register-name').value.trim();
             const email = document.getElementById('register-email').value.trim();
@@ -1601,7 +1610,6 @@
             
             let isValid = true;
             
-            // التحقق من جميع الحقول
             const fields = [
                 { id: 'register-name', value: name, minLength: 3, message: 'الاسم يجب أن يكون 3 أحرف على الأقل' },
                 { id: 'register-email', value: email, isEmail: true, message: 'صيغة البريد الإلكتروني غير صحيحة' },
@@ -1634,7 +1642,6 @@
                 return;
             }
             
-            // التحقق إذا كان الحساب موجود بالفعل
             const users = JSON.parse(localStorage.getItem('users') || '[]');
             const userExists = users.some(user => user.email === email);
             
@@ -1646,7 +1653,6 @@
             
             showNotification('جاري إنشاء الحساب...', 'info');
             
-            // إنشاء المستخدم الجديد
             setTimeout(() => {
                 const newUser = {
                     name: name,
@@ -1659,7 +1665,6 @@
                 users.push(newUser);
                 localStorage.setItem('users', JSON.stringify(users));
                 
-                // تسجيل الدخول تلقائياً
                 localStorage.setItem('isLoggedIn', 'true');
                 localStorage.setItem('userEmail', email);
                 localStorage.setItem('userName', name);
@@ -1687,7 +1692,6 @@
             showNotification('تم تسجيل الخروج', 'info');
             scrollToTop();
             
-            // إعادة تعيين النموذج
             resetLoginForm();
         }
         
@@ -1699,13 +1703,11 @@
         }
         
         function showRegister() {
-            // إعادة تعيين نموذج التسجيل
             document.getElementById('register-name').value = '';
             document.getElementById('register-email').value = '';
             document.getElementById('register-password').value = '';
             document.getElementById('register-confirm-password').value = '';
             
-            // إخفاء رسائل الخطأ
             ['register-name', 'register-email', 'register-password', 'register-confirm-password'].forEach(id => {
                 clearFieldError(document.getElementById(id));
             });
@@ -1717,7 +1719,6 @@
             document.getElementById('register-modal').style.display = 'none';
         }
         
-        // تحديث واجهة المستخدم بعد تسجيل الدخول
         function updateUserInterface() {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
             const guestMode = localStorage.getItem('guestMode');
@@ -1727,18 +1728,15 @@
             const mobileUserWelcome = document.getElementById('mobile-user-welcome');
             
             if (isLoggedIn && userName) {
-                // تحديث الاسم والصورة
                 const firstLetter = userName.charAt(0);
                 document.getElementById('user-avatar').textContent = firstLetter;
                 document.getElementById('mobile-user-avatar').textContent = firstLetter;
                 document.getElementById('user-name').textContent = `مرحباً، ${userName.split(' ')[0]}`;
                 document.getElementById('mobile-user-name').textContent = `مرحباً، ${userName.split(' ')[0]}`;
                 
-                // إظهار رسالة الترحيب
                 userWelcome.style.display = 'flex';
                 mobileUserWelcome.style.display = 'block';
             } else if (guestMode) {
-                // وضع الضيف
                 document.getElementById('user-name').textContent = 'مرحباً، ضيف';
                 document.getElementById('mobile-user-name').textContent = 'مرحباً، ضيف';
                 document.getElementById('user-avatar').textContent = 'ض';
@@ -1747,7 +1745,6 @@
                 userWelcome.style.display = 'flex';
                 mobileUserWelcome.style.display = 'block';
             } else {
-                // إخفاء رسالة الترحيب
                 userWelcome.style.display = 'none';
                 mobileUserWelcome.style.display = 'none';
             }
@@ -1755,13 +1752,13 @@
         
         // ========== عرض الألعاب ==========
         
-        // عرض الألعاب الرئيسية
         function displayGames() {
             const container = document.getElementById('games-container');
+            if (!container) return;
+            
             container.innerHTML = '';
             
             Object.values(gamesData).forEach((game, index) => {
-                // التحقق إذا كانت اللعبة في التصنيف المحدد
                 if (currentFilter !== 'all' && game.category !== currentFilter) {
                     return;
                 }
@@ -1770,7 +1767,6 @@
                 gameCard.className = `game-card glass p-8 rounded-2xl scroll-fade relative`;
                 gameCard.style.animationDelay = `${(index % 3) * 0.1}s`;
                 
-                // إضافة علامة الحالة
                 const statusBadge = game.status === 'soon' ? 
                     '<div class="status-badge soon">قريباً</div>' : 
                     '<div class="status-badge available">متاح</div>';
@@ -1781,7 +1777,7 @@
                         <i class="${game.icon} text-white text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-center mb-4">${game.title}</h3>
-                    <p class="text-gray-400 text-center mb-6">${game.category === 'mobile' ? 'لعبة موبايل' : game.category === 'pc' ? 'لعبة كمبيوتر' : 'لعبة كونسول'}</p>
+                    <p class="text-gray-400 text-center mb-6">${getCategoryName(game.category)}</p>
                     
                     <div class="space-y-4 mb-8">
                         ${game.packages.slice(0, 3).map((pkg, i) => `
@@ -1802,22 +1798,21 @@
             });
         }
         
-        // عرض الألعاب السريعة
         function displayQuickGames() {
             const container = document.getElementById('quick-games-container');
+            if (!container) return;
+            
             container.innerHTML = '';
             
-            // عرض أول 6 ألعاب فقط للشكل الجيد
             Object.values(gamesData).slice(0, 6).forEach((game, index) => {
                 const btn = document.createElement('button');
                 btn.className = `p-4 glass rounded-xl hover:border-primary transition text-center quick-game-btn`;
                 btn.setAttribute('data-game', game.id);
                 btn.onclick = () => quickSelect(game.id);
                 
-                // تحديد لون حسب اللعبة
                 let borderColor = 'hover:border-primary';
-                if (game.color.includes('secondary')) borderColor = 'hover:border-secondary';
-                if (game.color.includes('accent')) borderColor = 'hover:border-accent';
+                if (game.color.includes('green')) borderColor = 'hover:border-green-500';
+                if (game.color.includes('yellow')) borderColor = 'hover:border-yellow-500';
                 if (game.color.includes('red')) borderColor = 'hover:border-red-500';
                 if (game.color.includes('blue')) borderColor = 'hover:border-blue-500';
                 
@@ -1825,45 +1820,36 @@
                 
                 btn.innerHTML = `
                     <i class="${game.icon} text-primary text-xl mb-2 block"></i>
-                    <div class="text-sm">${game.title.split('-')[0]}</div>
+                    <div class="text-sm">${game.title.split('-')[0].trim()}</div>
                 `;
                 
                 container.appendChild(btn);
             });
         }
         
-        // الحصول على اللون من gradient
+        function getCategoryName(category) {
+            const categories = {
+                'mobile': 'لعبة موبايل',
+                'pc': 'لعبة كمبيوتر',
+                'console': 'لعبة كونسول'
+            };
+            return categories[category] || 'لعبة';
+        }
+        
         function getGameColor(gradient) {
-            if (gradient.includes('primary')) return '#6d28d9';
-            if (gradient.includes('secondary')) return '#10b981';
-            if (gradient.includes('accent')) return '#f59e0b';
-            if (gradient.includes('red')) return '#ef4444';
-            if (gradient.includes('blue')) return '#3b82f6';
             if (gradient.includes('purple')) return '#8b5cf6';
-            if (gradient.includes('pink')) return '#ec4899';
             if (gradient.includes('green')) return '#10b981';
             if (gradient.includes('yellow')) return '#f59e0b';
+            if (gradient.includes('red')) return '#ef4444';
+            if (gradient.includes('blue')) return '#3b82f6';
+            if (gradient.includes('pink')) return '#ec4899';
+            if (gradient.includes('indigo')) return '#6366f1';
+            if (gradient.includes('orange')) return '#f97316';
+            if (gradient.includes('teal')) return '#14b8a6';
             if (gradient.includes('emerald')) return '#10b981';
             return '#6d28d9';
         }
         
-        // إعداد التصنيفات
-        function setupCategories() {
-            const categories = document.querySelectorAll('.game-category');
-            categories.forEach(cat => {
-                cat.addEventListener('click', function() {
-                    // إزالة النشاط من جميع التصنيفات
-                    categories.forEach(c => c.classList.remove('active'));
-                    // إضافة النشاط للتصنيف المحدد
-                    this.classList.add('active');
-                    // تصفية الألعاب
-                    currentFilter = this.getAttribute('data-category');
-                    displayGames();
-                });
-            });
-        }
-        
-        // تصفية الألعاب
         function filterGames(category) {
             currentFilter = category;
             const categories = document.querySelectorAll('.game-category');
@@ -1879,7 +1865,6 @@
         
         // ========== الوظائف المساعدة ==========
         
-        // شريط التقدم
         function setupProgressBar() {
             window.addEventListener('scroll', () => {
                 const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -1889,7 +1874,6 @@
             });
         }
         
-        // تأثيرات التمرير
         function setupScrollEffects() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1904,7 +1888,6 @@
             });
         }
         
-        // زر العودة للأعلى
         function setupScrollTopButton() {
             const scrollBtn = document.getElementById('scroll-top');
             
@@ -1917,7 +1900,6 @@
             });
         }
         
-        // التنقل السلس
         function setupSmoothScroll() {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -1932,7 +1914,6 @@
                             behavior: 'smooth'
                         });
                         
-                        // إغلاق قائمة الجوال إذا كانت مفتوحة
                         document.getElementById('mobile-menu').classList.add('hidden');
                     }
                 });
@@ -1950,13 +1931,11 @@
             });
         }
         
-        // قائمة الجوال
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
         
-        // السحب والإفلات
         function setupDragAndDrop() {
             const uploadArea = document.getElementById('upload-area');
             if (uploadArea) {
@@ -2025,13 +2004,11 @@
             showNotification('تم إزالة الملف', 'info');
         }
         
-        // تحديث تواريخ التقييمات
         function updateReviewDates() {
             const now = new Date();
             
             const reviewDates = document.querySelectorAll('.review-card .text-gray-500');
             if (reviewDates.length >= 3) {
-                // تحديث التواريخ ديناميكياً
                 const dates = [
                     formatDate(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 90)),
                     formatDate(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1)),
@@ -2049,7 +2026,8 @@
             return date.toLocaleDateString('ar-EG', options);
         }
         
-        // نافذة الطلب
+        // ========== نافذة الطلب ==========
+        
         function openOrderModal(gameId) {
             const game = gamesData[gameId];
             
@@ -2067,10 +2045,8 @@
             document.getElementById('summary-price').textContent = '-';
             document.getElementById('summary-total').textContent = '0 جنيه';
             
-            // إعادة تعيين حقل الآيدي
             document.getElementById('player-id').value = '';
             
-            // تعبئة الباقات
             const container = document.getElementById('packages-container');
             container.innerHTML = '';
             
@@ -2101,7 +2077,6 @@
                 
                 container.appendChild(packageElement);
                 
-                // تحديد أول باقة شعبية بشكل افتراضي
                 if (index === 1) {
                     selectPackage(pkg, packageElement);
                 }
@@ -2121,23 +2096,19 @@
         function selectPackage(pkg, element) {
             selectedPackage = pkg;
             
-            // إزالة التحديد من جميع الباقات
             document.querySelectorAll('.package-item').forEach(pkgEl => {
                 pkgEl.classList.remove('border-primary');
                 pkgEl.classList.add('border-transparent');
             });
             
-            // إضافة التحديد للباقة المختارة
             element.classList.remove('border-transparent');
             element.classList.add('border-primary');
             
-            // تحديث الملخص
             document.getElementById('summary-package').textContent = pkg.name;
             document.getElementById('summary-price').textContent = pkg.price;
             document.getElementById('summary-total').textContent = pkg.price;
         }
         
-        // الطلب السريع
         function quickSelect(gameId) {
             const quickPlayerId = document.getElementById('quick-player-id').value;
             if (quickPlayerId) {
@@ -2162,7 +2133,6 @@
             openOrderModal(currentGame);
         }
         
-        // إرسال الطلب
         function submitOrder() {
             const playerId = document.getElementById('player-id').value;
             
@@ -2181,16 +2151,13 @@
                 return;
             }
             
-            // حفظ الطلب
             saveOrder(playerId);
             
-            // إرسال رسالة واتساب
             sendWhatsAppMessage(playerId, selectedPackage.name + ' - ' + selectedPackage.price);
             
             closeOrderModal();
         }
         
-        // حفظ الطلب
         function saveOrder(playerId) {
             const userEmail = localStorage.getItem('userEmail');
             if (userEmail) {
@@ -2214,7 +2181,6 @@
             }
         }
         
-        // إرسال رسالة واتساب
         function sendWhatsAppMessage(playerId, packageInfo) {
             const game = gamesData[currentGame];
             const userName = localStorage.getItem('userName') || 'عميل';
@@ -2239,15 +2205,14 @@
             window.open(`https://wa.me/201207771639?text=${encodedMessage}`, '_blank');
         }
         
-        // عرض الإشعارات
+        // ========== الإشعارات ==========
+        
         function showNotification(message, type = 'info') {
-            // إزالة أي إشعارات سابقة
             const existingNotification = document.querySelector('.notification');
             if (existingNotification) {
                 existingNotification.remove();
             }
             
-            // إنشاء الإشعار الجديد
             const notification = document.createElement('div');
             notification.className = 'notification';
             
@@ -2273,7 +2238,6 @@
             
             document.body.appendChild(notification);
             
-            // إزالة الإشعار بعد 3 ثوان
             setTimeout(() => {
                 notification.style.opacity = '0';
                 notification.style.transform = 'translateX(-50%) translateY(-20px)';
@@ -2282,6 +2246,24 @@
                 }, 300);
             }, 3000);
         }
+        
+        // ========== تهيئة التصنيفات ==========
+        function setupCategories() {
+            const categories = document.querySelectorAll('.game-category');
+            categories.forEach(cat => {
+                cat.addEventListener('click', function() {
+                    categories.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.getAttribute('data-category');
+                    displayGames();
+                });
+            });
+        }
+        
+        // تهيئة التصنيفات عند التحميل
+        setTimeout(() => {
+            setupCategories();
+        }, 100);
     </script>
 </body>
 </html>
