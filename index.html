@@ -20,24 +20,68 @@
             --light: #f8fafc;
             --glass: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
+            
+            /* ألوان الوضع النهاري */
+            --light-bg: #f8fafc;
+            --light-text: #1e293b;
+            --light-card: #ffffff;
+            --light-border: #e2e8f0;
+            --light-glass: rgba(255, 255, 255, 0.8);
+            --light-glass-border: rgba(203, 213, 225, 0.3);
+        }
+        
+        /* النظام الأساسي: مظلم */
+        .dark-mode {
+            --bg-color: var(--darker);
+            --text-color: var(--light);
+            --card-bg: rgba(15, 23, 42, 0.95);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --glass-bg: var(--glass);
+            --glass-border-color: var(--glass-border);
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --input-bg: rgba(255, 255, 255, 0.05);
+            --hover-bg: rgba(255, 255, 255, 0.08);
+            --stats-bg: rgba(255, 255, 255, 0.03);
+        }
+        
+        /* النظام النهاري */
+        .light-mode {
+            --bg-color: var(--light-bg);
+            --text-color: var(--light-text);
+            --card-bg: var(--light-card);
+            --border-color: var(--light-border);
+            --glass-bg: var(--light-glass);
+            --glass-border-color: var(--light-glass-border);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --input-bg: rgba(0, 0, 0, 0.03);
+            --hover-bg: rgba(0, 0, 0, 0.05);
+            --stats-bg: rgba(0, 0, 0, 0.02);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
         
         body {
             font-family: 'Cairo', sans-serif;
-            background: var(--darker);
-            color: var(--light);
+            background: var(--bg-color);
+            color: var(--text-color);
             min-height: 100vh;
             overflow-x: hidden;
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(109, 40, 217, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+        }
+        
+        .light-mode body {
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(109, 40, 217, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
         }
         
         /* شاشة الدخول */
@@ -47,7 +91,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: var(--darker);
+            background: var(--bg-color);
             z-index: 10000;
             display: flex;
             align-items: center;
@@ -56,14 +100,14 @@
         }
         
         .login-container {
-            background: rgba(15, 23, 42, 0.95);
+            background: var(--card-bg);
             backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
+            border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 3rem;
             max-width: 420px;
             width: 90%;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 40px var(--shadow-color);
             animation: slideUp 0.6s ease;
         }
         
@@ -80,9 +124,9 @@
         
         /* تصميمات عامة */
         .glass {
-            background: var(--glass);
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
+            border: 1px solid var(--glass-border-color);
             border-radius: 16px;
         }
         
@@ -133,11 +177,11 @@
         }
         
         .input-field {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: var(--input-bg);
+            border: 2px solid var(--border-color);
             border-radius: 12px;
             padding: 14px 20px;
-            color: white;
+            color: var(--text-color);
             width: 100%;
             font-size: 16px;
             transition: all 0.3s ease;
@@ -153,6 +197,8 @@
         .game-card {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
         }
         
         .game-card:hover {
@@ -184,8 +230,8 @@
         }
         
         .order-container {
-            background: rgba(15, 23, 42, 0.95);
-            border: 1px solid var(--glass-border);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 2.5rem;
             max-width: 1000px;
@@ -311,11 +357,14 @@
         /* بطاقات التقييمات */
         .review-card {
             transition: all 0.3s ease;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
         }
         
         .review-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
         }
         
         /* خطوات الطلب */
@@ -323,12 +372,13 @@
             position: relative;
             padding: 2rem;
             border-radius: 16px;
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--stats-bg);
             transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
         }
         
         .step-card:hover {
-            background: rgba(255, 255, 255, 0.07);
+            background: var(--hover-bg);
             transform: translateY(-5px);
         }
         
@@ -368,12 +418,12 @@
         
         /* إعلان المصمم */
         .designer-ad {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
             border-radius: 16px;
             padding: 1.5rem;
             margin-top: 2rem;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--glass-border-color);
             backdrop-filter: blur(10px);
             animation: fadeIn 1s ease;
         }
@@ -410,7 +460,7 @@
             display: none;
             align-items: center;
             gap: 8px;
-            color: white;
+            color: var(--text-color);
             font-weight: 600;
         }
         
@@ -428,16 +478,17 @@
         
         /* تصنيفات الألعاب */
         .game-category {
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--stats-bg);
             border-radius: 12px;
             padding: 0.75rem 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 1px solid transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
         }
         
         .game-category:hover {
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--hover-bg);
         }
         
         .game-category.active {
@@ -451,7 +502,7 @@
         }
         
         .order-container::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--stats-bg);
             border-radius: 4px;
         }
         
@@ -496,9 +547,82 @@
                 grid-template-columns: 1fr;
             }
         }
+        
+        /* زر تبديل الثيم */
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+        }
+        
+        .theme-toggle:hover {
+            background: var(--hover-bg);
+            transform: rotate(15deg);
+        }
+        
+        .theme-toggle i {
+            font-size: 1.2rem;
+        }
+        
+        .light-mode .theme-toggle .fa-moon,
+        .dark-mode .theme-toggle .fa-sun {
+            display: none;
+        }
+        
+        .light-mode .theme-toggle .fa-sun,
+        .dark-mode .theme-toggle .fa-moon {
+            display: block;
+        }
+        
+        /* تأثيرات إضافية للوضع النهاري */
+        .light-mode .game-card,
+        .light-mode .review-card,
+        .light-mode .step-card {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .light-mode .glass {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* نص رمادي في الوضع النهاري */
+        .light-mode .text-gray-400 {
+            color: #64748b !important;
+        }
+        
+        .light-mode .text-gray-500 {
+            color: #64748b !important;
+        }
+        
+        .light-mode .text-gray-300 {
+            color: #475569 !important;
+        }
+        
+        /* حدود في الوضع النهاري */
+        .light-mode .border-gray-800 {
+            border-color: #e2e8f0 !important;
+        }
+        
+        /* خلفية الشفافية */
+        .light-mode .bg-dark {
+            background-color: rgba(241, 245, 249, 0.5) !important;
+        }
+        
+        /* تأثير القائمة الجوالية */
+        .light-mode #mobile-menu {
+            background: var(--light-glass);
+        }
     </style>
 </head>
-<body>
+<body class="dark-mode">
     <!-- شريط التقدم -->
     <div class="progress-bar" id="progressBar"></div>
     
@@ -604,11 +728,15 @@
                 </div>
             </div>
             
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#home" class="text-gray-300 hover:text-white transition">الرئيسية</a>
-                <a href="#games" class="text-gray-300 hover:text-white transition">الألعاب</a>
-                <a href="#how-to" class="text-gray-300 hover:text-white transition">كيفية الطلب</a>
-                <a href="#reviews" class="text-gray-300 hover:text-white transition">التقييمات</a>
+            <div class="hidden md:flex items-center gap-6">
+                <button onclick="toggleTheme()" class="theme-toggle" title="تبديل الثيم">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <a href="#home" class="text-gray-300 hover:text-primary transition">الرئيسية</a>
+                <a href="#games" class="text-gray-300 hover:text-primary transition">الألعاب</a>
+                <a href="#how-to" class="text-gray-300 hover:text-primary transition">كيفية الطلب</a>
+                <a href="#reviews" class="text-gray-300 hover:text-primary transition">التقييمات</a>
                 <div class="user-welcome" id="user-welcome">
                     <div class="user-avatar" id="user-avatar">م</div>
                     <span id="user-name">مرحباً، أحمد</span>
@@ -617,23 +745,29 @@
                     <i class="fas fa-shopping-cart ml-2"></i>
                     اطلب الآن
                 </button>
-                <button onclick="logout()" class="text-gray-400 hover:text-white">
+                <button onclick="logout()" class="text-gray-400 hover:text-primary">
                     <i class="fas fa-sign-out-alt"></i>
                 </button>
             </div>
             
-            <button class="md:hidden w-10 h-10 glass rounded-xl flex items-center justify-center" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
+            <div class="flex items-center gap-3 md:hidden">
+                <button onclick="toggleTheme()" class="theme-toggle" title="تبديل الثيم">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="w-10 h-10 glass rounded-xl flex items-center justify-center" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
         
         <!-- قائمة الجوال -->
         <div id="mobile-menu" class="md:hidden mt-4 glass rounded-xl p-4 hidden">
             <div class="space-y-3">
-                <a href="#home" class="block text-gray-300 hover:text-white transition p-3 rounded-lg hover:bg-white/5">الرئيسية</a>
-                <a href="#games" class="block text-gray-300 hover:text-white transition p-3 rounded-lg hover:bg-white/5">الألعاب</a>
-                <a href="#how-to" class="block text-gray-300 hover:text-white transition p-3 rounded-lg hover:bg-white/5">كيفية الطلب</a>
-                <a href="#reviews" class="block text-gray-300 hover:text-white transition p-3 rounded-lg hover:bg-white/5">التقييمات</a>
+                <a href="#home" class="block text-gray-300 hover:text-primary transition p-3 rounded-lg hover:bg-white/5">الرئيسية</a>
+                <a href="#games" class="block text-gray-300 hover:text-primary transition p-3 rounded-lg hover:bg-white/5">الألعاب</a>
+                <a href="#how-to" class="block text-gray-300 hover:text-primary transition p-3 rounded-lg hover:bg-white/5">كيفية الطلب</a>
+                <a href="#reviews" class="block text-gray-300 hover:text-primary transition p-3 rounded-lg hover:bg-white/5">التقييمات</a>
                 <div class="user-welcome p-3" id="mobile-user-welcome">
                     <div class="flex items-center gap-3">
                         <div class="user-avatar" id="mobile-user-avatar">م</div>
@@ -644,7 +778,7 @@
                     <i class="fas fa-shopping-cart ml-2"></i>
                     اطلب الآن
                 </button>
-                <button onclick="logout()" class="w-full text-gray-400 hover:text-white p-3 rounded-lg hover:bg-white/5 text-right">
+                <button onclick="logout()" class="w-full text-gray-400 hover:text-primary p-3 rounded-lg hover:bg-white/5 text-right">
                     <i class="fas fa-sign-out-alt ml-2"></i>
                     تسجيل الخروج
                 </button>
@@ -683,7 +817,7 @@
                             <i class="fas fa-gamepad ml-2"></i>
                             ابدأ الشحن الآن
                         </button>
-                        <a href="#how-to" class="px-8 py-3 text-lg glass rounded-xl hover:bg-white/5 transition inline-flex items-center">
+                        <a href="#how-to" class="px-8 py-3 glass rounded-xl hover:bg-white/5 transition inline-flex items-center">
                             <i class="fas fa-play-circle ml-2"></i>
                             شاهد الشرح
                         </a>
@@ -1024,7 +1158,7 @@
     </section>
     
     <!-- الفوتر -->
-    <footer class="py-12 px-6 md:px-12 border-t border-gray-800/50">
+    <footer class="py-12 px-6 md:px-12 border-t border-gray-800">
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-4 gap-12 mb-12">
                 <div>
@@ -1042,10 +1176,10 @@
                 <div>
                     <h4 class="text-lg font-bold mb-6">روابط سريعة</h4>
                     <div class="space-y-3">
-                        <a href="#home" class="block text-gray-400 hover:text-white transition">الرئيسية</a>
-                        <a href="#games" class="block text-gray-400 hover:text-white transition">الألعاب</a>
-                        <a href="#how-to" class="block text-gray-400 hover:text-white transition">كيفية الطلب</a>
-                        <a href="#reviews" class="block text-gray-400 hover:text-white transition">التقييمات</a>
+                        <a href="#home" class="block text-gray-400 hover:text-primary transition">الرئيسية</a>
+                        <a href="#games" class="block text-gray-400 hover:text-primary transition">الألعاب</a>
+                        <a href="#how-to" class="block text-gray-400 hover:text-primary transition">كيفية الطلب</a>
+                        <a href="#reviews" class="block text-gray-400 hover:text-primary transition">التقييمات</a>
                     </div>
                 </div>
                 
@@ -1099,12 +1233,12 @@
                     </div>
                     <div style="text-align: right;">
                         <h4 style="
-                            color: white;
+                            color: var(--text-color);
                             margin-bottom: 0.5rem;
                             font-size: 1.2rem;
                         ">صمم الموقع بواسطة</h4>
                         <p style="
-                            color: rgba(255, 255, 255, 0.9);
+                            color: var(--text-color);
                             font-size: 1.1rem;
                             font-weight: 600;
                             margin-bottom: 0.3rem;
@@ -1120,20 +1254,20 @@
                     align-items: center;
                     justify-content: center;
                     gap: 0.8rem;
-                    background: rgba(255, 255, 255, 0.15);
+                    background: var(--stats-bg);
                     padding: 0.8rem 1.5rem;
                     border-radius: 12px;
                     max-width: 300px;
                     margin: 0 auto;
                     transition: all 0.3s ease;
-                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    border: 1px solid var(--border-color);
                 ">
                     <i class="fab fa-whatsapp" style="
                         color: #25D366;
                         font-size: 1.3rem;
                     "></i>
                     <a href="https://wa.me/+201207771639" target="_blank" style="
-                        color: white;
+                        color: var(--text-color);
                         text-decoration: none;
                         font-weight: 600;
                         font-size: 1.1rem;
@@ -1142,13 +1276,15 @@
                         +20 120 777 1639
                     </a>
                     <i class="fas fa-external-link-alt" style="
-                        color: rgba(255, 255, 255, 0.7);
+                        color: var(--text-color);
+                        opacity: 0.7;
                         font-size: 0.9rem;
                     "></i>
                 </div>
                 
                 <p style="
-                    color: rgba(255, 255, 255, 0.7);
+                    color: var(--text-color);
+                    opacity: 0.7;
                     font-size: 0.9rem;
                     margin-top: 1rem;
                     font-style: italic;
@@ -1158,7 +1294,7 @@
                 </p>
             </div>
             
-            <div class="pt-8 border-t border-gray-800/50 text-center">
+            <div class="pt-8 border-t border-gray-800 text-center">
                 <p class="text-gray-500">© 2024 شحن الألعاب. جميع الحقوق محفوظة.</p>
             </div>
         </div>
@@ -1344,6 +1480,9 @@
             // التحقق من حالة الدخول
             checkLoginStatus();
             
+            // تحميل الثيم المحفوظ
+            loadTheme();
+            
             // إعداد شريط التقدم
             setupProgressBar();
             
@@ -1371,7 +1510,53 @@
             // عرض الألعاب
             displayGames();
             displayQuickGames();
+            
+            // إعداد التصنيفات
+            setupCategories();
         });
+        
+        // ========== نظام Dark/Light Mode ==========
+        
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark-mode';
+            document.body.className = savedTheme;
+            updateThemeIcon(savedTheme);
+        }
+        
+        function toggleTheme() {
+            const currentTheme = document.body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
+            const newTheme = currentTheme === 'dark-mode' ? 'light-mode' : 'dark-mode';
+            
+            // تبديل الثيم
+            document.body.classList.remove('dark-mode', 'light-mode');
+            document.body.classList.add(newTheme);
+            
+            // حفظ في localStorage
+            localStorage.setItem('theme', newTheme);
+            
+            // تحديث الأيقونة
+            updateThemeIcon(newTheme);
+            
+            // إظهار إشعار
+            showNotification(
+                newTheme === 'dark-mode' ? 'تم تفعيل الوضع الليلي 🌙' : 'تم تفعيل الوضع النهاري ☀️',
+                'success'
+            );
+        }
+        
+        function updateThemeIcon(theme) {
+            const themeToggle = document.querySelector('.theme-toggle');
+            if (themeToggle) {
+                const moonIcon = themeToggle.querySelector('.fa-moon');
+                const sunIcon = themeToggle.querySelector('.fa-sun');
+                
+                if (theme === 'dark-mode') {
+                    themeToggle.title = 'تفعيل الوضع النهاري';
+                } else {
+                    themeToggle.title = 'تفعيل الوضع الليلي';
+                }
+            }
+        }
         
         // ========== نظام التسجيل والتحقق ==========
         
@@ -2259,11 +2444,6 @@
                 });
             });
         }
-        
-        // تهيئة التصنيفات عند التحميل
-        setTimeout(() => {
-            setupCategories();
-        }, 100);
     </script>
 </body>
 </html>
