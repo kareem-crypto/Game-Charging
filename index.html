@@ -31,7 +31,27 @@
         }
         
         /* النظام الأساسي: مظلم */
-        .dark-mode {
+        body.dark-mode {
+            background-color: var(--darker);
+            color: var(--light);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(109, 40, 217, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+        }
+        
+        /* النظام النهاري - تم تصحيح السلكتر هنا */
+        body.light-mode {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(109, 40, 217, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+        }
+        
+        /* متغيرات عامة تابعة للوضع */
+        body {
             --bg-color: var(--darker);
             --text-color: var(--light);
             --card-bg: rgba(15, 23, 42, 0.95);
@@ -43,9 +63,8 @@
             --hover-bg: rgba(255, 255, 255, 0.08);
             --stats-bg: rgba(255, 255, 255, 0.03);
         }
-        
-        /* النظام النهاري */
-        .light-mode {
+
+        body.light-mode {
             --bg-color: var(--light-bg);
             --text-color: var(--light-text);
             --card-bg: var(--light-card);
@@ -67,21 +86,8 @@
         
         body {
             font-family: 'Cairo', sans-serif;
-            background: var(--bg-color);
-            color: var(--text-color);
             min-height: 100vh;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(109, 40, 217, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
-        }
-        
-        .light-mode body {
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(109, 40, 217, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
         }
         
         /* شاشة الدخول */
@@ -572,53 +578,30 @@
             font-size: 1.2rem;
         }
         
-        .light-mode .theme-toggle .fa-moon,
-        .dark-mode .theme-toggle .fa-sun {
+        body.light-mode .theme-toggle .fa-moon,
+        body.dark-mode .theme-toggle .fa-sun {
             display: none;
         }
         
-        .light-mode .theme-toggle .fa-sun,
-        .dark-mode .theme-toggle .fa-moon {
+        body.light-mode .theme-toggle .fa-sun,
+        body.dark-mode .theme-toggle .fa-moon {
             display: block;
         }
         
         /* تأثيرات إضافية للوضع النهاري */
-        .light-mode .game-card,
-        .light-mode .review-card,
-        .light-mode .step-card {
+        body.light-mode .game-card,
+        body.light-mode .review-card,
+        body.light-mode .step-card {
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
         
-        .light-mode .glass {
+        body.light-mode .glass {
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         
-        /* نص رمادي في الوضع النهاري */
-        .light-mode .text-gray-400 {
-            color: #64748b !important;
-        }
-        
-        .light-mode .text-gray-500 {
-            color: #64748b !important;
-        }
-        
-        .light-mode .text-gray-300 {
-            color: #475569 !important;
-        }
-        
-        /* حدود في الوضع النهاري */
-        .light-mode .border-gray-800 {
-            border-color: #e2e8f0 !important;
-        }
-        
-        /* خلفية الشفافية */
-        .light-mode .bg-dark {
-            background-color: rgba(241, 245, 249, 0.5) !important;
-        }
-        
-        /* تأثير القائمة الجوالية */
-        .light-mode #mobile-menu {
-            background: var(--light-glass);
+        /* تعديل لاتجاه النصوص LTR للأرقام */
+        .direction-ltr {
+            direction: ltr;
         }
     </style>
 </head>
@@ -634,18 +617,18 @@
                     <i class="fas fa-bolt text-white text-2xl"></i>
                 </div>
                 <h1 class="text-3xl font-bold gradient-text mb-2">شحن الألعاب</h1>
-                <p class="text-gray-400">أرخص وأسرع شحن ألعاب في مصر</p>
+                <p class="text-gray-400" style="color: var(--text-color); opacity: 0.7;">أرخص وأسرع شحن ألعاب في مصر</p>
             </div>
             
             <div class="space-y-6">
                 <div>
-                    <label class="block text-gray-300 mb-2">البريد الإلكتروني</label>
+                    <label class="block mb-2" style="color: var(--text-color);">البريد الإلكتروني</label>
                     <input type="email" id="login-email" placeholder="example@gmail.com" class="input-field">
                     <div id="login-email-error" class="error-message">يرجى إدخال بريد إلكتروني صحيح</div>
                 </div>
                 
                 <div>
-                    <label class="block text-gray-300 mb-2">كلمة المرور</label>
+                    <label class="block mb-2" style="color: var(--text-color);">كلمة المرور</label>
                     <input type="password" id="login-password" placeholder="********" class="input-field">
                     <div id="login-password-error" class="error-message">يرجى إدخال كلمة المرور</div>
                 </div>
@@ -656,17 +639,17 @@
                 </button>
                 
                 <div class="text-center">
-                    <button onclick="skipLogin()" class="text-gray-400 hover:text-white transition">
+                    <button onclick="skipLogin()" style="background: none; border: none; cursor: pointer; opacity: 0.7;">
                         <i class="fas fa-forward ml-2"></i>
                         تخطي وتصفح الموقع
                     </button>
                 </div>
             </div>
             
-            <div class="mt-8 pt-6 border-t border-gray-800">
-                <p class="text-center text-gray-500 text-sm">
+            <div class="mt-8 pt-6 border-t" style="border-color: var(--border-color);">
+                <p class="text-center text-sm" style="opacity: 0.7;">
                     ليس لديك حساب؟ 
-                    <button onclick="showRegister()" class="text-primary hover:underline">سجل الآن مجاناً</button>
+                    <button onclick="showRegister()" style="background: none; border: none; color: var(--primary); font-weight: bold; cursor: pointer;">سجل الآن مجاناً</button>
                 </p>
             </div>
         </div>
@@ -684,25 +667,25 @@
             
             <div class="space-y-4">
                 <div>
-                    <label class="block text-gray-300 mb-2">الاسم الكامل</label>
+                    <label class="block mb-2" style="color: var(--text-color);">الاسم الكامل</label>
                     <input type="text" id="register-name" placeholder="أحمد محمد" class="input-field">
                     <div id="register-name-error" class="error-message">يرجى إدخال الاسم الكامل</div>
                 </div>
                 
                 <div>
-                    <label class="block text-gray-300 mb-2">البريد الإلكتروني</label>
+                    <label class="block mb-2" style="color: var(--text-color);">البريد الإلكتروني</label>
                     <input type="email" id="register-email" placeholder="example@gmail.com" class="input-field">
                     <div id="register-email-error" class="error-message">يرجى إدخال بريد إلكتروني صحيح</div>
                 </div>
                 
                 <div>
-                    <label class="block text-gray-300 mb-2">كلمة المرور</label>
+                    <label class="block mb-2" style="color: var(--text-color);">كلمة المرور</label>
                     <input type="password" id="register-password" placeholder="********" class="input-field">
                     <div id="register-password-error" class="error-message">كلمة المرور يجب أن تكون 6 أحرف على الأقل</div>
                 </div>
                 
                 <div>
-                    <label class="block text-gray-300 mb-2">تأكيد كلمة المرور</label>
+                    <label class="block mb-2" style="color: var(--text-color);">تأكيد كلمة المرور</label>
                     <input type="password" id="register-confirm-password" placeholder="********" class="input-field">
                     <div id="register-confirm-error" class="error-message">كلمتا المرور غير متطابقتين</div>
                 </div>
@@ -724,7 +707,7 @@
                 </div>
                 <div>
                     <h1 class="text-xl font-bold gradient-text">شحن الألعاب</h1>
-                    <p class="text-xs text-gray-400 hidden md:block">أرخص شحن ألعاب</p>
+                    <p class="text-xs hidden md:block" style="opacity: 0.7;">أرخص شحن ألعاب</p>
                 </div>
             </div>
             
@@ -733,10 +716,10 @@
                     <i class="fas fa-moon"></i>
                     <i class="fas fa-sun"></i>
                 </button>
-                <a href="#home" class="text-gray-300 hover:text-primary transition">الرئيسية</a>
-                <a href="#games" class="text-gray-300 hover:text-primary transition">الألعاب</a>
-                <a href="#how-to" class="text-gray-300 hover:text-primary transition">كيفية الطلب</a>
-                <a href="#reviews" class="text-gray-300 hover:text-primary transition">التقييمات</a>
+                <a href="#home" style="text-decoration: none;" onclick="closeMobileMenu()">الرئيسية</a>
+                <a href="#games" style="text-decoration: none;" onclick="closeMobileMenu()">الألعاب</a>
+                <a href="#how-to" style="text-decoration: none;" onclick="closeMobileMenu()">كيفية الطلب</a>
+                <a href="#reviews" style="text-decoration: none;" onclick="closeMobileMenu()">التقييمات</a>
                 <div class="user-welcome" id="user-welcome">
                     <div class="user-avatar" id="user-avatar">م</div>
                     <span id="user-name">مرحباً، أحمد</span>
@@ -745,7 +728,7 @@
                     <i class="fas fa-shopping-cart ml-2"></i>
                     اطلب الآن
                 </button>
-                <button onclick="logout()" class="text-gray-400 hover:text-primary">
+                <button onclick="logout()" title="تسجيل الخروج">
                     <i class="fas fa-sign-out-alt"></i>
                 </button>
             </div>
@@ -764,10 +747,10 @@
         <!-- قائمة الجوال -->
         <div id="mobile-menu" class="md:hidden mt-4 glass rounded-xl p-4 hidden">
             <div class="space-y-3">
-                <a href="#home" class="block text-gray-300 hover:text-primary transition p-3 rounded-lg hover:bg-white/5">الرئيسية</a>
-                <a href="#games" class="block text-gray-300 hover:text-primary transition p-3 rounded-lg hover:bg-white/5">الألعاب</a>
-                <a href="#how-to" class="block text-gray-300 hover:text-primary transition p-3 rounded-lg hover:bg-white/5">كيفية الطلب</a>
-                <a href="#reviews" class="block text-gray-300 hover:text-primary transition p-3 rounded-lg hover:bg-white/5">التقييمات</a>
+                <a href="#home" class="block p-3 rounded-lg hover:bg-white/5" style="text-decoration: none; color: var(--text-color);" onclick="toggleMobileMenu()">الرئيسية</a>
+                <a href="#games" class="block p-3 rounded-lg hover:bg-white/5" style="text-decoration: none; color: var(--text-color);" onclick="toggleMobileMenu()">الألعاب</a>
+                <a href="#how-to" class="block p-3 rounded-lg hover:bg-white/5" style="text-decoration: none; color: var(--text-color);" onclick="toggleMobileMenu()">كيفية الطلب</a>
+                <a href="#reviews" class="block p-3 rounded-lg hover:bg-white/5" style="text-decoration: none; color: var(--text-color);" onclick="toggleMobileMenu()">التقييمات</a>
                 <div class="user-welcome p-3" id="mobile-user-welcome">
                     <div class="flex items-center gap-3">
                         <div class="user-avatar" id="mobile-user-avatar">م</div>
@@ -778,7 +761,7 @@
                     <i class="fas fa-shopping-cart ml-2"></i>
                     اطلب الآن
                 </button>
-                <button onclick="logout()" class="w-full text-gray-400 hover:text-primary p-3 rounded-lg hover:bg-white/5 text-right">
+                <button onclick="logout()" class="w-full p-3 rounded-lg hover:bg-white/5 text-right" style="background: none; border: none; color: var(--text-color);">
                     <i class="fas fa-sign-out-alt ml-2"></i>
                     تسجيل الخروج
                 </button>
@@ -791,8 +774,8 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="scroll-fade">
-                    <div class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 mb-6">
-                        <span class="text-sm">
+                    <div class="inline-block px-4 py-2 rounded-full border mb-6" style="background: rgba(109, 40, 217, 0.2); border-color: rgba(109, 40, 217, 0.3);">
+                        <span class="text-sm" style="color: var(--primary);">
                             <i class="fas fa-gift ml-2"></i>
                             خصم 25% لفترة محدودة
                         </span>
@@ -807,7 +790,7 @@
                         في مصر
                     </h1>
                     
-                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    <p class="text-xl mb-8 leading-relaxed" style="opacity: 0.8;">
                         نوفر لك أرخص أسعار شحن الألعاب مع سرعة توصيل فائقة وضمان كامل. 
                         انضم إلى أكثر من 150 عميل يثقون في خدماتنا.
                     </p>
@@ -817,7 +800,7 @@
                             <i class="fas fa-gamepad ml-2"></i>
                             ابدأ الشحن الآن
                         </button>
-                        <a href="#how-to" class="px-8 py-3 glass rounded-xl hover:bg-white/5 transition inline-flex items-center">
+                        <a href="#how-to" class="px-8 py-3 glass rounded-xl hover:bg-white/5 transition inline-flex items-center" style="text-decoration: none; color: var(--text-color);">
                             <i class="fas fa-play-circle ml-2"></i>
                             شاهد الشرح
                         </a>
@@ -826,16 +809,16 @@
                     <!-- إحصائيات -->
                     <div class="grid grid-cols-3 gap-6 mt-12">
                         <div class="text-center">
-                            <div class="text-3xl font-bold text-primary mb-1">+150</div>
-                            <div class="text-sm text-gray-400">عميل راضي</div>
+                            <div class="text-3xl font-bold mb-1" style="color: var(--primary);">+150</div>
+                            <div class="text-sm" style="opacity: 0.7;">عميل راضي</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-3xl font-bold text-secondary mb-1">99%</div>
-                            <div class="text-sm text-gray-400">رضا العملاء</div>
+                            <div class="text-3xl font-bold mb-1" style="color: var(--secondary);">99%</div>
+                            <div class="text-sm" style="opacity: 0.7;">رضا العملاء</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-3xl font-bold text-accent mb-1">5 د</div>
-                            <div class="text-sm text-gray-400">متوسط التوصيل</div>
+                            <div class="text-3xl font-bold mb-1" style="color: var(--accent);">5 د</div>
+                            <div class="text-sm" style="opacity: 0.7;">متوسط التوصيل</div>
                         </div>
                     </div>
                 </div>
@@ -847,18 +830,18 @@
                                 <i class="fas fa-bolt text-white text-2xl"></i>
                             </div>
                             <h3 class="text-2xl font-bold mb-2">الطلب السريع</h3>
-                            <p class="text-gray-400">اشحن لعبتك في دقائق</p>
+                            <p style="opacity: 0.7;">اشحن لعبتك في دقائق</p>
                         </div>
                         
                         <div class="space-y-6">
                             <div>
-                                <label class="block text-gray-400 mb-3">رقم الآيدي</label>
+                                <label class="block mb-3" style="opacity: 0.7;">رقم الآيدي</label>
                                 <input type="text" placeholder="مثال: 518834221" 
                                     class="input-field" id="quick-player-id">
                             </div>
                             
                             <div>
-                                <label class="block text-gray-400 mb-3">اختر اللعبة</label>
+                                <label class="block mb-3" style="opacity: 0.7;">اختر اللعبة</label>
                                 <div class="grid grid-cols-3 gap-3" id="quick-games-container">
                                     <!-- سيتم ملؤها بالجافاسكريبت -->
                                 </div>
@@ -872,21 +855,21 @@
                     </div>
                     
                     <!-- عناصر زخرفية -->
-                    <div class="absolute -top-6 -right-6 w-32 h-32 bg-primary/10 rounded-full blur-3xl -z-10"></div>
-                    <div class="absolute -bottom-6 -left-6 w-40 h-40 bg-secondary/10 rounded-full blur-3xl -z-10"></div>
+                    <div class="absolute -top-6 -right-6 w-32 h-32 rounded-full blur-3xl -z-10" style="background: rgba(109, 40, 217, 0.1);"></div>
+                    <div class="absolute -bottom-6 -left-6 w-40 h-40 rounded-full blur-3xl -z-10" style="background: rgba(16, 185, 129, 0.1);"></div>
                 </div>
             </div>
         </div>
     </section>
     
     <!-- قسم الألعاب -->
-    <section id="games" class="py-20 px-6 md:px-12 bg-gradient-to-b from-transparent to-dark/50">
+    <section id="games" class="py-20 px-6 md:px-12" style="background: linear-gradient(to bottom, transparent, var(--bg-color)); opacity: 0.9;">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 scroll-fade">
                 <h2 class="section-title text-4xl font-bold inline-block">
                     <span class="gradient-text">🎮 الألعاب المتاحة</span>
                 </h2>
-                <p class="text-xl text-gray-400 mt-4">اختر لعبتك المفضلة واستمتع بأرخص الأسعار</p>
+                <p class="text-xl mt-4" style="opacity: 0.7;">اختر لعبتك المفضلة واستمتع بأرخص الأسعار</p>
             </div>
             
             <!-- تصنيفات الألعاب -->
@@ -922,32 +905,32 @@
                 <h2 class="section-title text-4xl font-bold inline-block">
                     <span class="gradient-text">📱 كيفية الطلب</span>
                 </h2>
-                <p class="text-xl text-gray-400 mt-4">4 خطوات بسيطة لشحن لعبتك المفضلة</p>
+                <p class="text-xl mt-4" style="opacity: 0.7;">4 خطوات بسيطة لشحن لعبتك المفضلة</p>
             </div>
             
             <div class="grid md:grid-cols-4 gap-6">
                 <div class="step-card scroll-fade" style="animation-delay: 0.1s">
                     <div class="step-number">1</div>
                     <h3 class="text-xl font-bold mb-3">اختر اللعبة</h3>
-                    <p class="text-gray-400">اختر لعبتك المفضلة من القائمة</p>
+                    <p style="opacity: 0.7;">اختر لعبتك المفضلة من القائمة</p>
                 </div>
                 
                 <div class="step-card scroll-fade" style="animation-delay: 0.2s">
                     <div class="step-number">2</div>
                     <h3 class="text-xl font-bold mb-3">ادخل الآيدي</h3>
-                    <p class="text-gray-400">أدخل رقم الآيدي الخاص بك</p>
+                    <p style="opacity: 0.7;">أدخل رقم الآيدي الخاص بك</p>
                 </div>
                 
                 <div class="step-card scroll-fade" style="animation-delay: 0.3s">
                     <div class="step-number">3</div>
                     <h3 class="text-xl font-bold mb-3">اختر الباقة</h3>
-                    <p class="text-gray-400">اختر الباقة المناسبة من العروض</p>
+                    <p style="opacity: 0.7;">اختر الباقة المناسبة من العروض</p>
                 </div>
                 
                 <div class="step-card scroll-fade" style="animation-delay: 0.4s">
                     <div class="step-number">4</div>
                     <h3 class="text-xl font-bold mb-3">ادفع واستلم</h3>
-                    <p class="text-gray-400">ادفع واستلم شحنك خلال 5 دقائق</p>
+                    <p style="opacity: 0.7;">ادفع واستلم شحنك خلال 5 دقائق</p>
                 </div>
             </div>
         </div>
@@ -968,7 +951,7 @@
                 <div class="space-y-8">
                     <!-- رقم الآيدي -->
                     <div>
-                        <label class="block text-gray-300 mb-4 text-lg">
+                        <label class="block mb-4 text-lg" style="color: var(--text-color);">
                             <i class="fas fa-id-card ml-2"></i>
                             رقم الآيدي (Player ID)
                         </label>
@@ -978,17 +961,17 @@
                     
                     <!-- معلومات الدفع -->
                     <div>
-                        <label class="block text-gray-300 mb-4 text-lg">
+                        <label class="block mb-4 text-lg" style="color: var(--text-color);">
                             <i class="fas fa-credit-card ml-2"></i>
                             معلومات الدفع
                         </label>
                         <div class="glass p-6 rounded-xl">
-                            <p class="text-gray-300 mb-4">قم بالتحويل لمبلغ الباقة على:</p>
-                            <div class="bg-gradient-to-r from-primary/20 to-secondary/20 p-4 rounded-lg mb-4">
-                                <div class="text-sm text-gray-400 mb-2">رقم اورانج كاش:</div>
+                            <p class="mb-4">قم بالتحويل لمبلغ الباقة على:</p>
+                            <div class="p-4 rounded-lg mb-4" style="background: rgba(109, 40, 217, 0.2);">
+                                <div class="text-sm mb-2" style="opacity: 0.7;">رقم اورانج كاش:</div>
                                 <div class="text-2xl font-bold direction-ltr text-center font-mono">01207771639</div>
                             </div>
-                            <p class="text-sm text-gray-400">
+                            <p class="text-sm" style="opacity: 0.7;">
                                 <i class="fas fa-info-circle ml-2"></i>
                                 سيتم التأكيد خلال 1-5 دقائق من التحويل
                             </p>
@@ -997,23 +980,23 @@
                     
                     <!-- رفع الإثبات -->
                     <div>
-                        <label class="block text-gray-300 mb-4 text-lg">
+                        <label class="block mb-4 text-lg" style="color: var(--text-color);">
                             <i class="fas fa-image ml-2"></i>
                             إثبات التحويل
                         </label>
-                        <div onclick="document.getElementById('payment-proof').click()" class="border-2 border-dashed border-gray-700 rounded-xl p-8 text-center hover:border-primary transition cursor-pointer" id="upload-area">
-                            <i class="fas fa-cloud-upload-alt text-3xl text-gray-500 mb-4"></i>
-                            <p class="text-gray-400 mb-2">اسحب وأفلت صورة التحويل هنا</p>
-                            <p class="text-sm text-gray-500">أو انقر للرفع من جهازك</p>
+                        <div onclick="document.getElementById('payment-proof').click()" class="border-2 border-dashed rounded-xl p-8 text-center hover:border-primary transition cursor-pointer" id="upload-area" style="border-color: var(--border-color);">
+                            <i class="fas fa-cloud-upload-alt text-3xl mb-4" style="opacity: 0.5;"></i>
+                            <p class="mb-2" style="opacity: 0.7;">اسحب وأفلت صورة التحويل هنا</p>
+                            <p class="text-sm" style="opacity: 0.5;">أو انقر للرفع من جهازك</p>
                             <input type="file" class="hidden" id="payment-proof" accept="image/*" onchange="handleFileUpload(event)">
                         </div>
                         <div id="file-preview" class="mt-4 hidden">
                             <div class="glass p-4 rounded-xl flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <i class="fas fa-image text-primary ml-3"></i>
+                                    <i class="fas fa-image ml-3" style="color: var(--primary);"></i>
                                     <span id="file-name" class="text-sm"></span>
                                 </div>
-                                <button onclick="removeFile()" class="text-red-400 hover:text-red-300">
+                                <button onclick="removeFile()" style="color: #ef4444; background: none; border: none; cursor: pointer;">
                                     <i class="fas fa-times"></i>
                                 </button>
                             </div>
@@ -1025,7 +1008,7 @@
                 <div class="space-y-8">
                     <!-- الباقات -->
                     <div>
-                        <label class="block text-gray-300 mb-6 text-xl">
+                        <label class="block mb-6 text-xl" style="color: var(--text-color);">
                             <i class="fas fa-boxes ml-2"></i>
                             اختر الباقة المناسبة
                         </label>
@@ -1036,24 +1019,24 @@
                     
                     <!-- ملخص الطلب -->
                     <div>
-                        <label class="block text-gray-300 mb-4 text-lg">
+                        <label class="block mb-4 text-lg" style="color: var(--text-color);">
                             <i class="fas fa-receipt ml-2"></i>
                             تفاصيل طلبك
                         </label>
                         <div class="glass p-6 rounded-xl space-y-4">
                             <div class="flex justify-between">
-                                <span class="text-gray-400">اللعبة:</span>
+                                <span style="opacity: 0.7;">اللعبة:</span>
                                 <span id="summary-game" class="font-bold">-</span>
                             </div>
                             <div class="flex justify-between">
-                                <span class="text-gray-400">الباقة:</span>
+                                <span style="opacity: 0.7;">الباقة:</span>
                                 <span id="summary-package" class="font-bold">-</span>
                             </div>
                             <div class="flex justify-between">
-                                <span class="text-gray-400">السعر:</span>
-                                <span id="summary-price" class="font-bold text-lg text-primary">-</span>
+                                <span style="opacity: 0.7;">السعر:</span>
+                                <span id="summary-price" class="font-bold text-lg" style="color: var(--primary);">-</span>
                             </div>
-                            <div class="pt-4 border-t border-gray-800">
+                            <div class="pt-4 border-t" style="border-color: var(--border-color);">
                                 <div class="flex justify-between text-lg">
                                     <span>الإجمالي:</span>
                                     <span id="summary-total" class="text-xl font-bold gradient-text">0 جنيه</span>
@@ -1068,7 +1051,7 @@
                         أكمل الطلب عبر واتساب
                     </button>
                     
-                    <p class="text-center text-gray-500 text-sm">
+                    <p class="text-center text-sm" style="opacity: 0.5;">
                         <i class="fas fa-shield-alt ml-2"></i>
                         جميع عمليات الدفع آمنة ومشفرة
                     </p>
@@ -1078,13 +1061,13 @@
     </div>
     
     <!-- تقييمات العملاء -->
-    <section id="reviews" class="py-20 px-6 md:px-12 bg-gradient-to-b from-transparent to-dark/50">
+    <section id="reviews" class="py-20 px-6 md:px-12" style="background: linear-gradient(to bottom, transparent, var(--bg-color)); opacity: 0.9;">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 scroll-fade">
                 <h2 class="section-title text-4xl font-bold inline-block">
                     <span class="gradient-text">⭐ تقييمات العملاء</span>
                 </h2>
-                <p class="text-xl text-gray-400 mt-4">ماذا يقول عملاؤنا عن خدماتنا</p>
+                <p class="text-xl mt-4" style="opacity: 0.7;">ماذا يقول عملاؤنا عن خدماتنا</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
@@ -1104,10 +1087,10 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-gray-300 italic">
+                    <p class="italic" style="opacity: 0.8;">
                         "أسرع شحن جربته في حياتي، والخدمة ممتازة والأسعار فعلاً للغلابة!"
                     </p>
-                    <div class="mt-4 text-sm text-gray-500">2023-10-01</div>
+                    <div class="mt-4 text-sm" style="opacity: 0.5;">2023-10-01</div>
                 </div>
                 
                 <div class="review-card glass p-8 rounded-2xl scroll-fade" style="animation-delay: 0.2s">
@@ -1126,10 +1109,10 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-gray-300 italic">
+                    <p class="italic" style="opacity: 0.8;">
                         "خدمة محترمة جداً والشدات وصلت في 5 دقائق. أنصح بيهم!"
                     </p>
-                    <div class="mt-4 text-sm text-gray-500">أمس</div>
+                    <div class="mt-4 text-sm" style="opacity: 0.5;">أمس</div>
                 </div>
                 
                 <div class="review-card glass p-8 rounded-2xl scroll-fade" style="animation-delay: 0.3s">
@@ -1148,17 +1131,17 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-gray-300 italic">
+                    <p class="italic" style="opacity: 0.8;">
                         "عروض فيفا كويسة جداً والكوينز وصلت في دقائق. شكراً لكم!"
                     </p>
-                    <div class="mt-4 text-sm text-gray-500">منذ 1 أيام</div>
+                    <div class="mt-4 text-sm" style="opacity: 0.5;">منذ 1 أيام</div>
                 </div>
             </div>
         </div>
     </section>
     
     <!-- الفوتر -->
-    <footer class="py-12 px-6 md:px-12 border-t border-gray-800">
+    <footer class="py-12 px-6 md:px-12" style="border-top: 1px solid var(--border-color);">
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-4 gap-12 mb-12">
                 <div>
@@ -1168,7 +1151,7 @@
                         </div>
                         <h3 class="text-xl font-bold gradient-text">شحن الألعاب</h3>
                     </div>
-                    <p class="text-gray-400">
+                    <p style="opacity: 0.7;">
                         أرخص وأسرع شحن ألعاب في مصر. نوفر لكم أفضل الأسعار مع ضمان الجودة والسرعة.
                     </p>
                 </div>
@@ -1176,22 +1159,22 @@
                 <div>
                     <h4 class="text-lg font-bold mb-6">روابط سريعة</h4>
                     <div class="space-y-3">
-                        <a href="#home" class="block text-gray-400 hover:text-primary transition">الرئيسية</a>
-                        <a href="#games" class="block text-gray-400 hover:text-primary transition">الألعاب</a>
-                        <a href="#how-to" class="block text-gray-400 hover:text-primary transition">كيفية الطلب</a>
-                        <a href="#reviews" class="block text-gray-400 hover:text-primary transition">التقييمات</a>
+                        <a href="#home" class="block hover:text-primary transition" style="text-decoration: none; opacity: 0.7; color: var(--text-color);">الرئيسية</a>
+                        <a href="#games" class="block hover:text-primary transition" style="text-decoration: none; opacity: 0.7; color: var(--text-color);">الألعاب</a>
+                        <a href="#how-to" class="block hover:text-primary transition" style="text-decoration: none; opacity: 0.7; color: var(--text-color);">كيفية الطلب</a>
+                        <a href="#reviews" class="block hover:text-primary transition" style="text-decoration: none; opacity: 0.7; color: var(--text-color);">التقييمات</a>
                     </div>
                 </div>
                 
                 <div>
                     <h4 class="text-lg font-bold mb-6">تواصل معنا</h4>
                     <div class="space-y-4">
-                        <div class="flex items-center text-gray-400">
+                        <div class="flex items-center" style="opacity: 0.7;">
                             <i class="fab fa-whatsapp text-green-400 ml-3"></i>
                             <span>01207771639</span>
                         </div>
-                        <div class="flex items-center text-gray-400">
-                            <i class="fas fa-phone text-primary ml-3"></i>
+                        <div class="flex items-center" style="opacity: 0.7;">
+                            <i class="fas fa-phone ml-3" style="color: var(--primary);"></i>
                             <span>الدعم الفني: 24/7</span>
                         </div>
                     </div>
@@ -1200,9 +1183,9 @@
                 <div>
                     <h4 class="text-lg font-bold mb-6">طرق الدفع</h4>
                     <div class="flex flex-wrap gap-3">
-                        <div class="px-3 py-2 bg-orange-500/20 text-orange-300 rounded-lg text-sm">Orange Cash</div>
-                        <div class="px-3 py-2 bg-green-500/20 text-green-300 rounded-lg text-sm">Vodafone Cash</div>
-                        <div class="px-3 py-2 bg-blue-500/20 text-blue-300 rounded-lg text-sm">Fawry</div>
+                        <div class="px-3 py-2 rounded-lg text-sm" style="background: rgba(251, 146, 60, 0.2); color: #fb923c;">Orange Cash</div>
+                        <div class="px-3 py-2 rounded-lg text-sm" style="background: rgba(34, 197, 94, 0.2); color: #22c55e;">Vodafone Cash</div>
+                        <div class="px-3 py-2 rounded-lg text-sm" style="background: rgba(59, 130, 246, 0.2); color: #3b82f6;">Fawry</div>
                     </div>
                 </div>
             </div>
@@ -1233,12 +1216,10 @@
                     </div>
                     <div style="text-align: right;">
                         <h4 style="
-                            color: var(--text-color);
                             margin-bottom: 0.5rem;
                             font-size: 1.2rem;
                         ">صمم الموقع بواسطة</h4>
                         <p style="
-                            color: var(--text-color);
                             font-size: 1.1rem;
                             font-weight: 600;
                             margin-bottom: 0.3rem;
@@ -1260,30 +1241,28 @@
                     max-width: 300px;
                     margin: 0 auto;
                     transition: all 0.3s ease;
-                    border: 1px solid var(--border-color);
+                    border: 1px solid var(--glass-border-color);
                 ">
                     <i class="fab fa-whatsapp" style="
                         color: #25D366;
                         font-size: 1.3rem;
                     "></i>
                     <a href="https://wa.me/+201207771639" target="_blank" style="
-                        color: var(--text-color);
                         text-decoration: none;
                         font-weight: 600;
                         font-size: 1.1rem;
                         transition: all 0.3s ease;
+                        color: var(--text-color);
                     ">
                         +20 120 777 1639
                     </a>
                     <i class="fas fa-external-link-alt" style="
-                        color: var(--text-color);
                         opacity: 0.7;
                         font-size: 0.9rem;
                     "></i>
                 </div>
                 
                 <p style="
-                    color: var(--text-color);
                     opacity: 0.7;
                     font-size: 0.9rem;
                     margin-top: 1rem;
@@ -1294,8 +1273,8 @@
                 </p>
             </div>
             
-            <div class="pt-8 border-t border-gray-800 text-center">
-                <p class="text-gray-500">© 2024 شحن الألعاب. جميع الحقوق محفوظة.</p>
+            <div class="pt-8 text-center" style="border-top: 1px solid var(--border-color);">
+                <p style="opacity: 0.5;">© 2024 شحن الألعاب. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
@@ -1477,42 +1456,18 @@
         
         // ========== تهيئة الصفحة ==========
         document.addEventListener('DOMContentLoaded', function() {
-            // التحقق من حالة الدخول
             checkLoginStatus();
-            
-            // تحميل الثيم المحفوظ
             loadTheme();
-            
-            // إعداد شريط التقدم
             setupProgressBar();
-            
-            // إعداد تأثيرات التمرير
             setupScrollEffects();
-            
-            // إعداد زر العودة للأعلى
             setupScrollTopButton();
-            
-            // إعداد التنقل السلس
             setupSmoothScroll();
-            
-            // إعداد السحب والإفلات للصور
             setupDragAndDrop();
-            
-            // إعداد التحقق من صحة الحقول
             setupFormValidation();
-            
-            // تحديث تاريخ التقييمات
             updateReviewDates();
-            
-            // تحميل بيانات المستخدمين
             loadUsers();
-            
-            // عرض الألعاب
             displayGames();
             displayQuickGames();
-            
-            // إعداد التصنيفات
-            setupCategories();
         });
         
         // ========== نظام Dark/Light Mode ==========
@@ -1527,17 +1482,12 @@
             const currentTheme = document.body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
             const newTheme = currentTheme === 'dark-mode' ? 'light-mode' : 'dark-mode';
             
-            // تبديل الثيم
             document.body.classList.remove('dark-mode', 'light-mode');
             document.body.classList.add(newTheme);
             
-            // حفظ في localStorage
             localStorage.setItem('theme', newTheme);
-            
-            // تحديث الأيقونة
             updateThemeIcon(newTheme);
             
-            // إظهار إشعار
             showNotification(
                 newTheme === 'dark-mode' ? 'تم تفعيل الوضع الليلي 🌙' : 'تم تفعيل الوضع النهاري ☀️',
                 'success'
@@ -1545,17 +1495,8 @@
         }
         
         function updateThemeIcon(theme) {
-            const themeToggle = document.querySelector('.theme-toggle');
-            if (themeToggle) {
-                const moonIcon = themeToggle.querySelector('.fa-moon');
-                const sunIcon = themeToggle.querySelector('.fa-sun');
-                
-                if (theme === 'dark-mode') {
-                    themeToggle.title = 'تفعيل الوضع النهاري';
-                } else {
-                    themeToggle.title = 'تفعيل الوضع الليلي';
-                }
-            }
+            // محاكاة تغيير الأيقونة عن طريق CSS بدلاً من الـ DOM manipulation المعقدة
+            // تم استخدام CSS Selector في الستايل للتحكم في ظهور القمر والشمس
         }
         
         // ========== نظام التسجيل والتحقق ==========
@@ -1599,17 +1540,11 @@
         
         function setupFormValidation() {
             const registerFields = ['register-name', 'register-email', 'register-password', 'register-confirm-password'];
-            
             registerFields.forEach(fieldId => {
                 const field = document.getElementById(fieldId);
                 if (field) {
-                    field.addEventListener('input', function() {
-                        validateField(this);
-                    });
-                    
-                    field.addEventListener('blur', function() {
-                        validateField(this);
-                    });
+                    field.addEventListener('input', function() { validateField(this); });
+                    field.addEventListener('blur', function() { validateField(this); });
                 }
             });
             
@@ -1617,9 +1552,7 @@
             loginFields.forEach(fieldId => {
                 const field = document.getElementById(fieldId);
                 if (field) {
-                    field.addEventListener('input', function() {
-                        clearFieldError(this);
-                    });
+                    field.addEventListener('input', function() { clearFieldError(this); });
                 }
             });
         }
@@ -1634,43 +1567,22 @@
             
             switch(fieldId) {
                 case 'register-name':
-                    if (value.length < 3) {
-                        isValid = false;
-                        errorMessage = 'الاسم يجب أن يكون 3 أحرف على الأقل';
-                    }
+                    if (value.length < 3) { isValid = false; errorMessage = 'الاسم يجب أن يكون 3 أحرف على الأقل'; }
                     break;
-                    
                 case 'register-email':
                 case 'login-email':
-                    if (!value) {
-                        isValid = false;
-                        errorMessage = 'البريد الإلكتروني مطلوب';
-                    } else if (!validateEmail(value)) {
-                        isValid = false;
-                        errorMessage = 'صيغة البريد الإلكتروني غير صحيحة';
-                    }
+                    if (!value) { isValid = false; errorMessage = 'البريد الإلكتروني مطلوب'; }
+                    else if (!validateEmail(value)) { isValid = false; errorMessage = 'صيغة البريد الإلكتروني غير صحيحة'; }
                     break;
-                    
                 case 'register-password':
-                    if (value.length < 6) {
-                        isValid = false;
-                        errorMessage = 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
-                    }
+                    if (value.length < 6) { isValid = false; errorMessage = 'كلمة المرور يجب أن تكون 6 أحرف على الأقل'; }
                     break;
-                    
                 case 'register-confirm-password':
                     const password = document.getElementById('register-password').value.trim();
-                    if (value !== password) {
-                        isValid = false;
-                        errorMessage = 'كلمتا المرور غير متطابقتين';
-                    }
+                    if (value !== password) { isValid = false; errorMessage = 'كلمتا المرور غير متطابقتين'; }
                     break;
-                    
                 case 'login-password':
-                    if (!value) {
-                        isValid = false;
-                        errorMessage = 'كلمة المرور مطلوبة';
-                    }
+                    if (!value) { isValid = false; errorMessage = 'كلمة المرور مطلوبة'; }
                     break;
             }
             
@@ -1679,14 +1591,12 @@
             } else if (isValid && value) {
                 showFieldSuccess(field);
             }
-            
             return isValid;
         }
         
         function showFieldError(field, message) {
             field.classList.remove('input-success');
             field.classList.add('input-error');
-            
             const errorElement = document.getElementById(field.id + '-error');
             if (errorElement) {
                 errorElement.textContent = message;
@@ -1697,20 +1607,14 @@
         function showFieldSuccess(field) {
             field.classList.remove('input-error');
             field.classList.add('input-success');
-            
             const errorElement = document.getElementById(field.id + '-error');
-            if (errorElement) {
-                errorElement.style.display = 'none';
-            }
+            if (errorElement) errorElement.style.display = 'none';
         }
         
         function clearFieldError(field) {
             field.classList.remove('input-error', 'input-success');
-            
             const errorElement = document.getElementById(field.id + '-error');
-            if (errorElement) {
-                errorElement.style.display = 'none';
-            }
+            if (errorElement) errorElement.style.display = 'none';
         }
         
         function validateEmail(email) {
@@ -1721,21 +1625,11 @@
         function login() {
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value.trim();
-            
             let isValid = true;
             
-            if (!email) {
-                showFieldError(document.getElementById('login-email'), 'البريد الإلكتروني مطلوب');
-                isValid = false;
-            } else if (!validateEmail(email)) {
-                showFieldError(document.getElementById('login-email'), 'صيغة البريد الإلكتروني غير صحيحة');
-                isValid = false;
-            }
-            
-            if (!password) {
-                showFieldError(document.getElementById('login-password'), 'كلمة المرور مطلوبة');
-                isValid = false;
-            }
+            if (!email) { showFieldError(document.getElementById('login-email'), 'البريد الإلكتروني مطلوب'); isValid = false; }
+            else if (!validateEmail(email)) { showFieldError(document.getElementById('login-email'), 'صيغة البريد الإلكتروني غير صحيحة'); isValid = false; }
+            if (!password) { showFieldError(document.getElementById('login-password'), 'كلمة المرور مطلوبة'); isValid = false; }
             
             if (!isValid) {
                 showNotification('يرجى تصحيح الأخطاء في النموذج', 'error');
@@ -1758,16 +1652,13 @@
             }
             
             showNotification('جاري تسجيل الدخول...', 'info');
-            
             setTimeout(() => {
                 localStorage.setItem('isLoggedIn', 'true');
                 localStorage.setItem('userEmail', email);
                 localStorage.setItem('userName', user.name);
-                
                 hideLoginScreen();
                 updateUserInterface();
                 showNotification(`مرحباً بعودتك ${user.name.split(' ')[0]}!`, 'success');
-                
                 resetLoginForm();
             }, 1000);
         }
@@ -1782,9 +1673,7 @@
         function hideLoginScreen() {
             const loginScreen = document.getElementById('login-screen');
             loginScreen.style.opacity = '0';
-            setTimeout(() => {
-                loginScreen.style.display = 'none';
-            }, 500);
+            setTimeout(() => { loginScreen.style.display = 'none'; }, 500);
         }
         
         function register() {
@@ -1794,7 +1683,6 @@
             const confirmPassword = document.getElementById('register-confirm-password').value.trim();
             
             let isValid = true;
-            
             const fields = [
                 { id: 'register-name', value: name, minLength: 3, message: 'الاسم يجب أن يكون 3 أحرف على الأقل' },
                 { id: 'register-email', value: email, isEmail: true, message: 'صيغة البريد الإلكتروني غير صحيحة' },
@@ -1804,56 +1692,30 @@
             
             fields.forEach(field => {
                 const fieldElement = document.getElementById(field.id);
-                
-                if (!field.value) {
-                    showFieldError(fieldElement, 'هذا الحقل مطلوب');
-                    isValid = false;
-                } else if (field.minLength && field.value.length < field.minLength) {
-                    showFieldError(fieldElement, field.message);
-                    isValid = false;
-                } else if (field.isEmail && !validateEmail(field.value)) {
-                    showFieldError(fieldElement, field.message);
-                    isValid = false;
-                } else if (field.compareWith && field.value !== field.compareWith) {
-                    showFieldError(fieldElement, field.message);
-                    isValid = false;
-                } else {
-                    showFieldSuccess(fieldElement);
-                }
+                if (!field.value) { showFieldError(fieldElement, 'هذا الحقل مطلوب'); isValid = false; }
+                else if (field.minLength && field.value.length < field.minLength) { showFieldError(fieldElement, field.message); isValid = false; }
+                else if (field.isEmail && !validateEmail(field.value)) { showFieldError(fieldElement, field.message); isValid = false; }
+                else if (field.compareWith && field.value !== field.compareWith) { showFieldError(fieldElement, field.message); isValid = false; }
+                else { showFieldSuccess(fieldElement); }
             });
             
-            if (!isValid) {
-                showNotification('يرجى تصحيح الأخطاء في النموذج', 'error');
-                return;
-            }
+            if (!isValid) { showNotification('يرجى تصحيح الأخطاء في النموذج', 'error'); return; }
             
             const users = JSON.parse(localStorage.getItem('users') || '[]');
-            const userExists = users.some(user => user.email === email);
-            
-            if (userExists) {
+            if (users.some(user => user.email === email)) {
                 showNotification('هذا البريد الإلكتروني مسجل بالفعل', 'error');
                 showFieldError(document.getElementById('register-email'), 'هذا البريد الإلكتروني مسجل بالفعل');
                 return;
             }
             
             showNotification('جاري إنشاء الحساب...', 'info');
-            
             setTimeout(() => {
-                const newUser = {
-                    name: name,
-                    email: email,
-                    password: btoa(password),
-                    createdAt: new Date().toISOString(),
-                    orders: []
-                };
-                
+                const newUser = { name, email, password: btoa(password), createdAt: new Date().toISOString(), orders: [] };
                 users.push(newUser);
                 localStorage.setItem('users', JSON.stringify(users));
-                
                 localStorage.setItem('isLoggedIn', 'true');
                 localStorage.setItem('userEmail', email);
                 localStorage.setItem('userName', name);
-                
                 closeRegister();
                 hideLoginScreen();
                 updateUserInterface();
@@ -1866,17 +1728,12 @@
             localStorage.removeItem('guestMode');
             localStorage.removeItem('userEmail');
             localStorage.removeItem('userName');
-            
             const loginScreen = document.getElementById('login-screen');
             loginScreen.style.display = 'flex';
-            setTimeout(() => {
-                loginScreen.style.opacity = '1';
-            }, 10);
-            
+            setTimeout(() => { loginScreen.style.opacity = '1'; }, 10);
             updateUserInterface();
             showNotification('تم تسجيل الخروج', 'info');
             scrollToTop();
-            
             resetLoginForm();
         }
         
@@ -1892,23 +1749,16 @@
             document.getElementById('register-email').value = '';
             document.getElementById('register-password').value = '';
             document.getElementById('register-confirm-password').value = '';
-            
-            ['register-name', 'register-email', 'register-password', 'register-confirm-password'].forEach(id => {
-                clearFieldError(document.getElementById(id));
-            });
-            
+            ['register-name', 'register-email', 'register-password', 'register-confirm-password'].forEach(id => clearFieldError(document.getElementById(id)));
             document.getElementById('register-modal').style.display = 'flex';
         }
         
-        function closeRegister() {
-            document.getElementById('register-modal').style.display = 'none';
-        }
+        function closeRegister() { document.getElementById('register-modal').style.display = 'none'; }
         
         function updateUserInterface() {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
             const guestMode = localStorage.getItem('guestMode');
             const userName = localStorage.getItem('userName');
-            
             const userWelcome = document.getElementById('user-welcome');
             const mobileUserWelcome = document.getElementById('mobile-user-welcome');
             
@@ -1918,7 +1768,6 @@
                 document.getElementById('mobile-user-avatar').textContent = firstLetter;
                 document.getElementById('user-name').textContent = `مرحباً، ${userName.split(' ')[0]}`;
                 document.getElementById('mobile-user-name').textContent = `مرحباً، ${userName.split(' ')[0]}`;
-                
                 userWelcome.style.display = 'flex';
                 mobileUserWelcome.style.display = 'block';
             } else if (guestMode) {
@@ -1926,7 +1775,6 @@
                 document.getElementById('mobile-user-name').textContent = 'مرحباً، ضيف';
                 document.getElementById('user-avatar').textContent = 'ض';
                 document.getElementById('mobile-user-avatar').textContent = 'ض';
-                
                 userWelcome.style.display = 'flex';
                 mobileUserWelcome.style.display = 'block';
             } else {
@@ -1940,13 +1788,10 @@
         function displayGames() {
             const container = document.getElementById('games-container');
             if (!container) return;
-            
             container.innerHTML = '';
             
             Object.values(gamesData).forEach((game, index) => {
-                if (currentFilter !== 'all' && game.category !== currentFilter) {
-                    return;
-                }
+                if (currentFilter !== 'all' && game.category !== currentFilter) return;
                 
                 const gameCard = document.createElement('div');
                 gameCard.className = `game-card glass p-8 rounded-2xl scroll-fade relative`;
@@ -1962,8 +1807,7 @@
                         <i class="${game.icon} text-white text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-center mb-4">${game.title}</h3>
-                    <p class="text-gray-400 text-center mb-6">${getCategoryName(game.category)}</p>
-                    
+                    <p class="text-center mb-6" style="opacity: 0.7;">${getCategoryName(game.category)}</p>
                     <div class="space-y-4 mb-8">
                         ${game.packages.slice(0, 3).map((pkg, i) => `
                             <div class="flex justify-between items-center p-4 glass rounded-xl ${i === 1 ? 'bg-gradient-to-r from-primary/20 to-transparent' : ''}">
@@ -1972,13 +1816,11 @@
                             </div>
                         `).join('')}
                     </div>
-                    
                     <button onclick="openOrderModal('${game.id}')" class="w-full btn-primary py-3 ${game.status === 'soon' ? 'opacity-50 cursor-not-allowed' : ''}" ${game.status === 'soon' ? 'disabled' : ''}>
                         <i class="fas fa-shopping-cart ml-2"></i>
                         ${game.status === 'soon' ? 'قريباً' : 'اختر باقة'}
                     </button>
                 `;
-                
                 container.appendChild(gameCard);
             });
         }
@@ -1986,7 +1828,6 @@
         function displayQuickGames() {
             const container = document.getElementById('quick-games-container');
             if (!container) return;
-            
             container.innerHTML = '';
             
             Object.values(gamesData).slice(0, 6).forEach((game, index) => {
@@ -1994,30 +1835,16 @@
                 btn.className = `p-4 glass rounded-xl hover:border-primary transition text-center quick-game-btn`;
                 btn.setAttribute('data-game', game.id);
                 btn.onclick = () => quickSelect(game.id);
-                
-                let borderColor = 'hover:border-primary';
-                if (game.color.includes('green')) borderColor = 'hover:border-green-500';
-                if (game.color.includes('yellow')) borderColor = 'hover:border-yellow-500';
-                if (game.color.includes('red')) borderColor = 'hover:border-red-500';
-                if (game.color.includes('blue')) borderColor = 'hover:border-blue-500';
-                
-                btn.className += ` ${borderColor}`;
-                
                 btn.innerHTML = `
-                    <i class="${game.icon} text-primary text-xl mb-2 block"></i>
+                    <i class="${game.icon} text-primary text-xl mb-2 block" style="color: var(--primary);"></i>
                     <div class="text-sm">${game.title.split('-')[0].trim()}</div>
                 `;
-                
                 container.appendChild(btn);
             });
         }
         
         function getCategoryName(category) {
-            const categories = {
-                'mobile': 'لعبة موبايل',
-                'pc': 'لعبة كمبيوتر',
-                'console': 'لعبة كونسول'
-            };
+            const categories = { 'mobile': 'لعبة موبايل', 'pc': 'لعبة كمبيوتر', 'console': 'لعبة كونسول' };
             return categories[category] || 'لعبة';
         }
         
@@ -2027,11 +1854,6 @@
             if (gradient.includes('yellow')) return '#f59e0b';
             if (gradient.includes('red')) return '#ef4444';
             if (gradient.includes('blue')) return '#3b82f6';
-            if (gradient.includes('pink')) return '#ec4899';
-            if (gradient.includes('indigo')) return '#6366f1';
-            if (gradient.includes('orange')) return '#f97316';
-            if (gradient.includes('teal')) return '#14b8a6';
-            if (gradient.includes('emerald')) return '#10b981';
             return '#6d28d9';
         }
         
@@ -2039,11 +1861,8 @@
             currentFilter = category;
             const categories = document.querySelectorAll('.game-category');
             categories.forEach(cat => {
-                if (cat.getAttribute('data-category') === category) {
-                    cat.classList.add('active');
-                } else {
-                    cat.classList.remove('active');
-                }
+                if (cat.getAttribute('data-category') === category) cat.classList.add('active');
+                else cat.classList.remove('active');
             });
             displayGames();
         }
@@ -2062,26 +1881,17 @@
         function setupScrollEffects() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('show');
-                    }
+                    if (entry.isIntersecting) entry.target.classList.add('show');
                 });
             }, { threshold: 0.1 });
-            
-            document.querySelectorAll('.scroll-fade').forEach(el => {
-                observer.observe(el);
-            });
+            document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
         }
         
         function setupScrollTopButton() {
             const scrollBtn = document.getElementById('scroll-top');
-            
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    scrollBtn.classList.remove('hidden');
-                } else {
-                    scrollBtn.classList.add('hidden');
-                }
+                if (window.scrollY > 300) scrollBtn.classList.remove('hidden');
+                else scrollBtn.classList.add('hidden');
             });
         }
         
@@ -2091,72 +1901,38 @@
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     if (targetId === '#') return;
-                    
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                        
-                        document.getElementById('mobile-menu').classList.add('hidden');
+                        window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
+                        toggleMobileMenu(true); // Ensure menu closes
                     }
                 });
             });
         }
         
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        function scrollToGames() { document.getElementById('games').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
         
-        function scrollToGames() {
-            document.getElementById('games').scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-        
-        function toggleMobileMenu() {
+        function toggleMobileMenu(forceClose = false) {
             const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            if (forceClose || !menu.classList.contains('hidden')) menu.classList.add('hidden');
+            else menu.classList.remove('hidden');
         }
+        
+        function closeMobileMenu() { document.getElementById('mobile-menu').classList.add('hidden'); }
         
         function setupDragAndDrop() {
             const uploadArea = document.getElementById('upload-area');
             if (uploadArea) {
-                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                    uploadArea.addEventListener(eventName, preventDefaults, false);
-                });
-                
-                function preventDefaults(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                }
-                
-                ['dragenter', 'dragover'].forEach(eventName => {
-                    uploadArea.addEventListener(eventName, highlight, false);
-                });
-                
-                ['dragleave', 'drop'].forEach(eventName => {
-                    uploadArea.addEventListener(eventName, unhighlight, false);
-                });
-                
-                function highlight() {
-                    uploadArea.classList.add('border-primary');
-                }
-                
-                function unhighlight() {
-                    uploadArea.classList.remove('border-primary');
-                }
-                
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => uploadArea.addEventListener(eventName, preventDefaults, false));
+                ['dragenter', 'dragover'].forEach(eventName => uploadArea.addEventListener(eventName, highlight, false));
+                ['dragleave', 'drop'].forEach(eventName => uploadArea.addEventListener(eventName, unhighlight, false));
                 uploadArea.addEventListener('drop', handleDrop, false);
-                
-                function handleDrop(e) {
-                    const dt = e.dataTransfer;
-                    const files = dt.files;
-                    handleFiles(files);
-                }
             }
+            function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
+            function highlight() { uploadArea.classList.add('border-primary'); }
+            function unhighlight() { uploadArea.classList.remove('border-primary'); }
+            function handleDrop(e) { handleFiles(e.dataTransfer.files); }
         }
         
         function handleFiles(files) {
@@ -2172,16 +1948,11 @@
             }
         }
         
-        function handleFileUpload(event) {
-            const files = event.target.files;
-            handleFiles(files);
-        }
-        
+        function handleFileUpload(event) { handleFiles(event.target.files); }
         function showFilePreview(file) {
             document.getElementById('file-name').textContent = file.name;
             document.getElementById('file-preview').classList.remove('hidden');
         }
-        
         function removeFile() {
             uploadedFile = null;
             document.getElementById('payment-proof').value = '';
@@ -2191,18 +1962,14 @@
         
         function updateReviewDates() {
             const now = new Date();
-            
-            const reviewDates = document.querySelectorAll('.review-card .text-gray-500');
+            const reviewDates = document.querySelectorAll('.review-card .text-sm');
             if (reviewDates.length >= 3) {
                 const dates = [
                     formatDate(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 90)),
                     formatDate(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1)),
                     formatDate(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 2))
                 ];
-                
-                reviewDates.forEach((dateEl, index) => {
-                    dateEl.textContent = dates[index];
-                });
+                reviewDates.forEach((dateEl, index) => { if(dates[index]) dateEl.textContent = dates[index]; });
             }
         }
         
@@ -2215,7 +1982,6 @@
         
         function openOrderModal(gameId) {
             const game = gamesData[gameId];
-            
             if (game.status === 'soon') {
                 showNotification('هذه اللعبة ستكون متاحة قريباً', 'info');
                 return;
@@ -2230,23 +1996,18 @@
             document.getElementById('summary-price').textContent = '-';
             document.getElementById('summary-total').textContent = '0 جنيه';
             
-            document.getElementById('player-id').value = '';
+            // ملاحظة: لم أقم بمسح حقل الـ player-id هنا، لكي يعمل "الطلب السريع" بشكل صحيح
+            // document.getElementById('player-id').value = ''; 
             
             const container = document.getElementById('packages-container');
             container.innerHTML = '';
             
             game.packages.forEach((pkg, index) => {
                 const packageElement = document.createElement('div');
-                packageElement.className = `package-item glass p-4 rounded-xl cursor-pointer transition border-2 ${
-                    pkg.popular ? 'border-primary' : 'border-transparent'
-                }`;
+                packageElement.className = `package-item glass p-4 rounded-xl cursor-pointer transition border-2 ${pkg.popular ? 'border-primary' : 'border-transparent'}`;
                 packageElement.onclick = () => selectPackage(pkg, packageElement);
                 
-                const isPopular = pkg.popular ? `
-                    <span class="px-2 py-1 bg-gradient-to-r from-primary to-secondary rounded-lg text-xs text-white">
-                        ${index === 1 ? 'الأكثر طلباً' : 'عرض خاص'}
-                    </span>
-                ` : '';
+                const isPopular = pkg.popular ? `<span class="px-2 py-1 bg-gradient-to-r from-primary to-secondary rounded-lg text-xs text-white">${index === 1 ? 'الأكثر طلباً' : 'عرض خاص'}</span>` : '';
                 
                 packageElement.innerHTML = `
                     <div class="flex justify-between items-center">
@@ -2259,12 +2020,8 @@
                         </div>
                     </div>
                 `;
-                
                 container.appendChild(packageElement);
-                
-                if (index === 1) {
-                    selectPackage(pkg, packageElement);
-                }
+                if (index === 1) selectPackage(pkg, packageElement);
             });
             
             document.getElementById('order-modal').style.display = 'flex';
@@ -2280,15 +2037,12 @@
         
         function selectPackage(pkg, element) {
             selectedPackage = pkg;
-            
             document.querySelectorAll('.package-item').forEach(pkgEl => {
                 pkgEl.classList.remove('border-primary');
                 pkgEl.classList.add('border-transparent');
             });
-            
             element.classList.remove('border-transparent');
             element.classList.add('border-primary');
-            
             document.getElementById('summary-package').textContent = pkg.name;
             document.getElementById('summary-price').textContent = pkg.price;
             document.getElementById('summary-total').textContent = pkg.price;
@@ -2296,50 +2050,25 @@
         
         function quickSelect(gameId) {
             const quickPlayerId = document.getElementById('quick-player-id').value;
-            if (quickPlayerId) {
-                document.getElementById('player-id').value = quickPlayerId;
-            }
+            if (quickPlayerId) document.getElementById('player-id').value = quickPlayerId;
             openOrderModal(gameId);
         }
         
         function quickOrder() {
             const playerId = document.getElementById('quick-player-id').value;
-            
-            if (!playerId) {
-                showNotification('يرجى إدخال رقم الآيدي', 'error');
-                return;
-            }
-            
-            if (!currentGame) {
-                showNotification('يرجى اختيار اللعبة', 'error');
-                return;
-            }
-            
+            if (!playerId) { showNotification('يرجى إدخال رقم الآيدي', 'error'); return; }
+            if (!currentGame) { showNotification('يرجى اختيار اللعبة', 'error'); return; }
             openOrderModal(currentGame);
         }
         
         function submitOrder() {
             const playerId = document.getElementById('player-id').value;
-            
-            if (!playerId) {
-                showNotification('يرجى إدخال رقم الآيدي', 'error');
-                return;
-            }
-            
-            if (!selectedPackage) {
-                showNotification('يرجى اختيار باقة', 'error');
-                return;
-            }
-            
-            if (!uploadedFile) {
-                showNotification('يرجى رفع صورة إثبات التحويل', 'error');
-                return;
-            }
+            if (!playerId) { showNotification('يرجى إدخال رقم الآيدي', 'error'); return; }
+            if (!selectedPackage) { showNotification('يرجى اختيار باقة', 'error'); return; }
+            if (!uploadedFile) { showNotification('يرجى رفع صورة إثبات التحويل', 'error'); return; }
             
             saveOrder(playerId);
-            
             sendWhatsAppMessage(playerId, selectedPackage.name + ' - ' + selectedPackage.price);
-            
             closeOrderModal();
         }
         
@@ -2348,7 +2077,6 @@
             if (userEmail) {
                 const users = JSON.parse(localStorage.getItem('users') || '[]');
                 const userIndex = users.findIndex(u => u.email === userEmail);
-                
                 if (userIndex !== -1) {
                     const game = gamesData[currentGame];
                     const order = {
@@ -2359,7 +2087,6 @@
                         date: new Date().toISOString(),
                         status: 'pending'
                     };
-                    
                     users[userIndex].orders.push(order);
                     localStorage.setItem('users', JSON.stringify(users));
                 }
@@ -2369,50 +2096,31 @@
         function sendWhatsAppMessage(playerId, packageInfo) {
             const game = gamesData[currentGame];
             const userName = localStorage.getItem('userName') || 'عميل';
-            
-            const message = `🎮 *طلب شحن جديد*\n\n`
-                + `*اسم العميل:* ${userName}\n`
-                + `*اللعبة:* ${game.title}\n`
-                + `*الباقة:* ${packageInfo}\n`
-                + `*رقم الآيدي:* ${playerId}\n\n`
-                + `تم التحويل على رقم اورانج كاش: 01207771639\n`
-                + `يرجى التأكيد والتحقق من الطلب.`;
-            
+            const message = `🎮 *طلب شحن جديد*\n\n` + `*اسم العميل:* ${userName}\n` + `*اللعبة:* ${game.title}\n` + `*الباقة:* ${packageInfo}\n` + `*رقم الآيدي:* ${playerId}\n\n` + `تم التحويل على رقم اورانج كاش: 01207771639\n` + `يرجى التأكيد والتحقق من الطلب.`;
             const encodedMessage = encodeURIComponent(message);
             window.open(`https://wa.me/201207771639?text=${encodedMessage}`, '_blank');
-            
             showNotification('جاري تحويلك إلى واتساب لإتمام الطلب...', 'success');
         }
         
         function openWhatsApp() {
             const message = 'مرحباً، أريد الاستفسار عن خدمات شحن الألعاب';
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/201207771639?text=${encodedMessage}`, '_blank');
+            window.open(`https://wa.me/201207771639?text=${encodeURIComponent(message)}`, '_blank');
         }
         
         // ========== الإشعارات ==========
         
         function showNotification(message, type = 'info') {
             const existingNotification = document.querySelector('.notification');
-            if (existingNotification) {
-                existingNotification.remove();
-            }
+            if (existingNotification) existingNotification.remove();
             
             const notification = document.createElement('div');
             notification.className = 'notification';
             
             let bgColor = 'from-blue-500 to-blue-600';
             let icon = 'fa-info-circle';
-            if (type === 'error') {
-                bgColor = 'from-red-500 to-red-600';
-                icon = 'fa-exclamation-circle';
-            } else if (type === 'success') {
-                bgColor = 'from-green-500 to-green-600';
-                icon = 'fa-check-circle';
-            } else if (type === 'warning') {
-                bgColor = 'from-yellow-500 to-yellow-600';
-                icon = 'fa-exclamation-triangle';
-            }
+            if (type === 'error') { bgColor = 'from-red-500 to-red-600'; icon = 'fa-exclamation-circle'; }
+            else if (type === 'success') { bgColor = 'from-green-500 to-green-600'; icon = 'fa-check-circle'; }
+            else if (type === 'warning') { bgColor = 'from-yellow-500 to-yellow-600'; icon = 'fa-exclamation-triangle'; }
             
             notification.innerHTML = `
                 <div class="px-6 py-4 rounded-xl flex items-center gap-3 shadow-2xl backdrop-blur-sm bg-gradient-to-r ${bgColor}">
@@ -2420,29 +2128,13 @@
                     <span class="font-bold">${message}</span>
                 </div>
             `;
-            
             document.body.appendChild(notification);
             
             setTimeout(() => {
                 notification.style.opacity = '0';
                 notification.style.transform = 'translateX(-50%) translateY(-20px)';
-                setTimeout(() => {
-                    notification.remove();
-                }, 300);
+                setTimeout(() => { notification.remove(); }, 300);
             }, 3000);
-        }
-        
-        // ========== تهيئة التصنيفات ==========
-        function setupCategories() {
-            const categories = document.querySelectorAll('.game-category');
-            categories.forEach(cat => {
-                cat.addEventListener('click', function() {
-                    categories.forEach(c => c.classList.remove('active'));
-                    this.classList.add('active');
-                    currentFilter = this.getAttribute('data-category');
-                    displayGames();
-                });
-            });
         }
     </script>
 </body>
